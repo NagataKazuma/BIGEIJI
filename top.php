@@ -100,9 +100,11 @@
                 $count2 = "'.$count.'";
                 $none2 = "'none'";
                 $block2 = "'block'";
+                $netflixurl = "https://www.netflix.com/search?q=";
                 if ($count <= 20) { //トップ１０を取得
                     echo '<div class="example">  <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '">';
                     echo '<p>' . $count . $juni . $title . '</p>';
+                    echo '<div class="neturl"><a href="' . $netflixurl . $title . '">netflixでみる</a></div>';
                     echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
                 <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
                 <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';

@@ -138,12 +138,15 @@ if (array_key_exists('movie_title', $_GET)) {
                     $notimg = "";
                     // if (empty($overview) and $poster_path = 'null') {
                     //     continue;
-                    // }
+                    // }"
+                    $netflixurl = "https://www.netflix.com/search?q=";
+                    // <a href="#">various</a>
                     if (empty($overview)) {
                         $overview = "あらすじが登録されていません😢";
                     }
                     echo '<div class="example"> <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '">';
                     echo ' <p>' . $title .  '</p>';
+                    echo '<a href="' . $netflixurl . $title . '">netflixでみる</a>';
                     echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
                             <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
                             <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
