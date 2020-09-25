@@ -1,0 +1,253 @@
+#loader-bg {
+    background: #fbfbfb;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    box-shadow: inset 0 0 15px 15px #fbfbfb;
+    z-index: 10;
+    font-size: 40px;
+    color: #eb0021;
+    font-family: 'Teko', sans-serif;
+}
+
+#loader-bg img {
+    background: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+
+/* ヘッダー画像の実装 */
+
+
+/* .header-bg {
+  background-image: url("top.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+} */
+
+.title-font {
+    font-family: 'Quicksand', sans-serif;
+    color: #5e3705;
+    font-size: 27px;
+}
+
+.wrapper {
+    min-height: 100%;
+    /* フッタの高さと等しいネガティブマージン */
+    /* また最後の子要素の潜在的なマージンとしても機能 */
+    margin-bottom: -50px;
+}
+
+.footer a {
+    color: #000000;
+    vertical-align: top;
+    margin-top: 30px;
+    bottom: 0px;
+    display: inline-block;
+}
+
+.push {
+    height: 30px;
+}
+
+.ser-box li {
+    list-style-type: none;
+    float: left;
+}
+
+#menu {
+    list-style-type: none;
+    width: auto;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    background: #c4cbd3;
+    /* border-bottom: solid 5px #4c4d4e; */
+}
+
+#menu li {
+    position: relative;
+    width: 25%;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+#menu li a {
+    display: block;
+    margin: 0;
+    padding: 5px 0;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: bold;
+    line-height: 2;
+    text-decoration: none;
+    font-family: 'Teko', sans-serif;
+}
+
+#menu li ul {
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#menu li:last-child ul {
+    left: -100%;
+    width: 100%
+}
+
+#menu li ul li {
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    color: #c4cbd3;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    -ms-transition: .2s;
+    transition: .2s;
+}
+
+#menu li ul li a {
+    padding: 10px 12px;
+    background: #c4cbd3;
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#menu li:hover>a {
+    background: #c4cbd3;
+    color: #e0dc62;
+}
+
+#menu li:hover ul li {
+    overflow: visible;
+    height: 38px;
+}
+
+#menu li:hover ul li:first-child {
+    border-top: 0;
+}
+
+#menu li:hover ul li:last-child {
+    border-bottom: 0;
+}
+
+.helpcon {
+    text-align: center;
+}
+
+#page_top {
+    width: 90px;
+    height: 90px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    opacity: 0.6;
+}
+
+#page_top a {
+    position: relative;
+    display: block;
+    width: 90px;
+    height: 90px;
+    text-decoration: none;
+}
+
+#page_top a::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f102';
+    font-size: 25px;
+    color: #5e3705;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: -40px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+}
+
+#page_top a::after {
+    content: 'PAGE TOP';
+    font-size: 13px;
+    color: #5e3705;
+    position: absolute;
+    top: 45px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    color: #5e3705;
+}
+
+body {
+    background-color: #c4cbd3;
+    text-align: center;
+}
+
+p {
+    font-size: 16px;
+    text-overflow: ellipsis;
+    width: 320px;
+    color: rgb(255, 255, 255);
+}
+
+.menu-color {
+    font-family: 'Cherry Swash', cursive;
+}
+
+.arasuji-color {
+    font-family: 'Amatic SC', cursive;
+    color: #063e64bb;
+    vertical-align: bottom;
+}
+
+.top_text {
+    color: #ffffff;
+    margin-top: 75px;
+    font-size: 40px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.example {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 30px;
+    box-shadow: inset 0 0 15px 15px #c4cbd3;
+}
+
+.example p {
+    font-weight: bold;
+    color: #86899b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0);
+    font-size: 18px;
+}
+
+.container {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.null {
+    color: saddlebrown;
+}
