@@ -1,13 +1,11 @@
 <?php
-
+error_reporting(0);
 $apikey = "3791fa354758148d1190e3e0af17612d"; //TMDbのAPIキー
 $error = "";
-
 if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
     $url_Contents = file_get_contents("https://api.themoviedb.org/3/search/movie?api_key=" . $apikey . "&query=" . $_GET['movie_title'] . "&page=1&include_adult=false");
     $movieArray = json_decode($url_Contents, true);
 }
-
 ?>
 
 
@@ -92,9 +90,7 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
             <ul class="ser-box">
                 <li><input type="text" class="form-control" name="movie_title" id="movie_title" placeholder="映画のタイトル🔎" value="
 <?php
-
 if (array_key_exists('movie_title', $_GET)) {
-
     echo $_GET['movie_title'];
 }
 
@@ -108,8 +104,17 @@ if (array_key_exists('movie_title', $_GET)) {
         <div id="movie">
 
             <?php
+            //ワーニング対策
+            error_reporting(0);
+            //検索結果が無いときtotal_resultsが0の時
+            $null = $movieArray['total_results'];
+            $nullme = "検索結果に一致するものはありませんでした。";
+            if ($null < 1 and $movieArray) {
+                echo '<br/><br/><br/><div class=null>' . $nullme . '</div>';
+                echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+            }
             if (empty($movieArray)) { //検索ボックスが空の場合なにもしない
-                echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+                echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
             } else if ($movieArray) {
                 $count = 0;
                 foreach ($movieArray['results'] as $record) {
@@ -128,16 +133,20 @@ if (array_key_exists('movie_title', $_GET)) {
                     $movie_Synopsis_url = file_get_contents("https://api.themoviedb.org/3/movie/" . $movie_id . "?" . "api_key=" . $apikey . "&language=ja");
                     $movie_Synopsis = json_decode($movie_Synopsis_url, true);
                     $overview = $movie_Synopsis['overview'];
+                    // if (empty($overview) and $poster_path = 'null') {
+                    //     continue;
+                    // }
                     if (empty($overview)) {
                         $overview = "あらすじが登録されていません😢";
                     }
                     echo '<div class="example"> <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '">';
-                    echo ' <p>' . $title . '</p>';
+                    echo ' <p>' . $title .  '</p>';
                     echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
-                  <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
-                  <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
+                            <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
+                            <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
                 }
             }
+
 
             ?>
         </div>
