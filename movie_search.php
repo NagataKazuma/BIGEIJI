@@ -108,7 +108,9 @@ if (array_key_exists('movie_title', $_GET)) {
             error_reporting(0);
             //検索結果が無いときtotal_resultsが0の時
             $null = $movieArray['total_results'];
-            $nullme = "検索結果に一致するものはありませんでした。";
+            $nullme1 = "検索キーワード'";
+            $nullme2 = "'に一致するものはありませんでした。";
+            $nullme = $nullme1 .  $_GET['movie_title'] . $nullme2;
             if ($null < 1 and $movieArray) {
                 echo '<br/><br/><br/><div class=null>' . $nullme . '</div>';
                 echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/>';
@@ -133,6 +135,7 @@ if (array_key_exists('movie_title', $_GET)) {
                     $movie_Synopsis_url = file_get_contents("https://api.themoviedb.org/3/movie/" . $movie_id . "?" . "api_key=" . $apikey . "&language=ja");
                     $movie_Synopsis = json_decode($movie_Synopsis_url, true);
                     $overview = $movie_Synopsis['overview'];
+                    $notimg = "";
                     // if (empty($overview) and $poster_path = 'null') {
                     //     continue;
                     // }
