@@ -116,6 +116,7 @@ if (array_key_exists('movie_title', $_GET)) {
                 echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
             } else if ($movieArray) {
                 $count = 0;
+                $page_count = $movieArray['total_pages'];
                 foreach ($movieArray['results'] as $record) {
                     $poster_path = $record['poster_path'];
                     $title = $record['original_title'];
@@ -148,7 +149,7 @@ if (array_key_exists('movie_title', $_GET)) {
                             <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
                 }
                 if ($hit_total >= 1) {
-                    echo '><div class=null>検索結果:' . $_GET['movie_title'] . $hit_total . '件のうち1-' . $count . 'を表示</div>';
+                    echo '<div class=null>検索結果:' . $_GET['movie_title'] . $hit_total . '件のうち1～' . $count . '件を表示</div>';
                 }
             }
 
