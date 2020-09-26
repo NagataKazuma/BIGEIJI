@@ -49,7 +49,6 @@
         <!-- ローディング画面の描写-->
         <div id="loader-bg">
             <img src="img/loading.gif">
-            <br />loding now!!
         </div>
         <script>
             jQuery(window).on('load', function() {

@@ -107,12 +107,9 @@ if (array_key_exists('movie_title', $_GET)) {
             //ワーニング対策
             error_reporting(0);
             //検索結果が無いときtotal_resultsが0の時
-            $null = $movieArray['total_results'];
-            $nullme1 = "検索キーワード'";
-            $nullme2 = "'に一致するものはありませんでした。";
-            $nullme = $nullme1 .  $_GET['movie_title'] . $nullme2;
-            if ($null < 1 and $movieArray) {
-                echo '<br/><br/><br/><div class=null>' . $nullme . '</div>';
+            $hit_total = $movieArray['total_results'];
+            if ($hit_total < 1 and $movieArray) {
+                echo '<br/><br/><br/><div class=null>' . $_GET['movie_title'] . 'の検索に一致するものはありませんでした。</div>';
                 echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/>';
             }
             if (empty($movieArray)) { //検索ボックスが空の場合なにもしない
@@ -149,6 +146,9 @@ if (array_key_exists('movie_title', $_GET)) {
                     echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
                             <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
                             <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
+                }
+                if ($hit_total >= 1) {
+                    echo '><div class=null>検索結果:' . $_GET['movie_title'] . $hit_total . '件のうち1-' . $count . 'を表示</div>';
                 }
             }
 
