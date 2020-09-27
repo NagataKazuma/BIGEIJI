@@ -88,7 +88,7 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
                     <fieldset class="form-group">
             </div>
             <ul class="ser-box">
-                <li><input type="text" class="form-control" name="movie_title" id="movie_title" placeholder="映画のタイトル🔎" value="
+                <li><input type="text" class="form-control" name="movie_title" id="movie_title" required placeholder="映画のタイトル" value="
 <?php
 if (array_key_exists('movie_title', $_GET)) {
     echo $_GET['movie_title'];
