@@ -46,12 +46,14 @@
     margin-bottom: -50px;
 }
 
+.footer {
+    vertical-align: top;
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
 .footer a {
     color: #000000;
-    vertical-align: top;
-    margin-top: 30px;
-    bottom: 0px;
-    display: inline-block;
 }
 
 .push {
@@ -145,10 +147,6 @@
     border-bottom: 0;
 }
 
-.helpcon {
-    text-align: center;
-}
-
 #page_top {
     width: 90px;
     height: 90px;
@@ -232,7 +230,7 @@ p {
     text-align: center;
     margin-left: 60px;
     margin-right: 60px;
-    margin-top: 30px;
+    margin-top: 60px;
     box-shadow: inset 0 0 15px 15px #c4cbd3;
 }
 
@@ -250,4 +248,15 @@ p {
 
 .null {
     color: saddlebrown;
+    position: absolute;
+    top: 45%;
+    left: 38%;
+}
+
+.neturl {
+    color: #eb0021;
+}
+
+.help_text {
+    font-size: 20px;
 }
