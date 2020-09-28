@@ -5,15 +5,12 @@
     position: fixed;
     box-shadow: inset 0 0 15px 15px #fbfbfb;
     z-index: 10;
-    font-size: 40px;
-    color: #eb0021;
-    font-family: 'Teko', sans-serif;
 }
 
 #loader-bg img {
     background: #fff;
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -52,6 +49,11 @@
     margin-bottom: 10px;
 }
 
+.footer-span {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .footer a {
     color: #000000;
 }
@@ -69,8 +71,7 @@
     list-style-type: none;
     width: auto;
     height: 70px;
-    margin: 0;
-    padding: 0;
+    margin: 0%;
     background: #c4cbd3;
     /* border-bottom: solid 5px #4c4d4e; */
 }
@@ -212,9 +213,7 @@ p {
 }
 
 .arasuji-color {
-    font-family: 'Amatic SC', cursive;
     color: #063e64bb;
-    vertical-align: bottom;
 }
 
 .top_text {
@@ -226,18 +225,17 @@ p {
 
 .example {
     display: inline-block;
-    vertical-align: top;
+    vertical-align: text-top;
     text-align: center;
     margin-left: 60px;
     margin-right: 60px;
-    margin-top: 60px;
+    margin-top: 40px;
     box-shadow: inset 0 0 15px 15px #c4cbd3;
 }
 
 .example p {
     font-weight: bold;
     color: #86899b;
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0);
     font-size: 18px;
 }
 
@@ -247,7 +245,7 @@ p {
 }
 
 .null {
-    color: saddlebrown;
+    color: #5e3705;
     position: absolute;
     top: 45%;
     left: 38%;
@@ -259,4 +257,19 @@ p {
 
 .help_text {
     font-size: 20px;
+}
+
+.span-Youtube {
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+.span-Netflix {
+    margin-left: 10px;
+    color: #ff0000;
+}
+
+.span-Amazon {
+    margin-left: 10px;
+    color: #ff7b00;
 }
