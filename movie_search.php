@@ -137,7 +137,7 @@ if (array_key_exists('movie_title', $_GET)) {
                     // if (empty($overview) and $poster_path = 'null') {
                     //     continue;
                     // }"
-                    $netflixurl = "https://www.netflix.com/search?q=";
+                    $netflixurl = "https://www.youtube.com/results?search_query=";
                     // <a href="#">various</a>
                     if (empty($overview)) {
                         $overview = "あらすじが登録されていません😢";

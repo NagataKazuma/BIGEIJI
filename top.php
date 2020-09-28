@@ -106,7 +106,7 @@
                 $count2 = "'.$count.'";
                 $none2 = "'none'";
                 $block2 = "'block'";
-                $netflixurl = "https://www.netflix.com/search?q=";
+                $netflixurl = "https://www.youtube.com/results?search_query=";
                 if ($count <= 20) { //トップhogeを取得
                     echo '<div class="example"> <div class="neturl"><a href="' . $netflixurl . $title . '"> <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '"></a></div>';
                     echo '<p>' . $count . $juni . $title . '</p>';
