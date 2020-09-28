@@ -76,7 +76,9 @@
 
                 <br />
                 <div class=top_text>
-                    <h1>実装予定です</h1>
+                    <h1>
+                        <div class="title-font"><img src="img/icon.png"> Canelé Filmsに登録</div>
+                    </h1>
                 </div><br />
 
 

@@ -14,14 +14,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <!-- googleフォントを利用するための参照URL -->
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700 rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Teko rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
+<!-- 表示内容 -->
 
 <body>
-    <!-- トップ画像 -->
     <div class="wrapper">
         <!-- ページトップに戻す描写 -->
         <div id="page_top"><a href="#"></a></div>
@@ -48,7 +49,6 @@
         <!-- ローディング画面の描写-->
         <div id="loader-bg">
             <img src="img/loading.gif">
-            <br />loding now!!
         </div>
         <script>
             jQuery(window).on('load', function() {
@@ -71,16 +71,21 @@
             <li><a href="http://localhost/sotuken/login.php">Login</a>
             </li>
         </ul>
-        <div class="header-bg"></div>
+        <!-- ヘッダー画像実装予定 -->
+        <!-- <div class="header-bg"></div> -->
         <div class="container">
+            <!-- トップテキスト -->
             <div class=top_text>注目映画ランキング</div>
-
+            <!-- TMDBapiを投げてレスポンスを描写 -->
             <?php
             $apikey = "3791fa354758148d1190e3e0af17612d"; //TMDbのAPIキー
+            //順位を表記するときの初期値
             $count = 0;
             $juni = '位:';
+            // toplistのURLにjsonを要求
             $top_list = file_get_contents("https://api.themoviedb.org/3/trending/movie/day?api_key=" . $apikey . "&language=ja");
             $movieTop = json_decode($top_list, true);
+            // jsonをデコード後results内の情報を要素数繰り返し
             foreach ($movieTop['results'] as $record) {
                 $title = $record['title'];
                 // $movie_id = $record['id'];
@@ -93,6 +98,7 @@
                 $enc_img = base64_encode($img_get);
                 $imginfo = getimagesize('data:application/octet-stream;base64,' . $enc_img);
                 $overview = $record['overview'];
+                //あらすじが未登録の場合
                 if (empty($overview)) {
                     $overview = "あらすじがまだ登録されていません　申し訳ございません😢";
                 }
@@ -100,8 +106,9 @@
                 $count2 = "'.$count.'";
                 $none2 = "'none'";
                 $block2 = "'block'";
-                if ($count <= 20) { //トップ１０を取得
-                    echo '<div class="example">  <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '">';
+                $netflixurl = "https://www.netflix.com/search?q=";
+                if ($count <= 20) { //トップhogeを取得
+                    echo '<div class="example"> <div class="neturl"><a href="' . $netflixurl . $title . '"> <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '"></a></div>';
                     echo '<p>' . $count . $juni . $title . '</p>';
                     echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
                 <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>

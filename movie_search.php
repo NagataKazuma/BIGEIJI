@@ -1,13 +1,11 @@
 <?php
-
+error_reporting(0);
 $apikey = "3791fa354758148d1190e3e0af17612d"; //TMDbのAPIキー
 $error = "";
-
 if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
     $url_Contents = file_get_contents("https://api.themoviedb.org/3/search/movie?api_key=" . $apikey . "&query=" . $_GET['movie_title'] . "&page=1&include_adult=false");
     $movieArray = json_decode($url_Contents, true);
 }
-
 ?>
 
 
@@ -90,11 +88,9 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
                     <fieldset class="form-group">
             </div>
             <ul class="ser-box">
-                <li><input type="text" class="form-control" name="movie_title" id="movie_title" placeholder="映画のタイトル🔎" value="
+                <li><input type="text" class="form-control" name="movie_title" id="movie_title" required placeholder="映画のタイトル" value="
 <?php
-
 if (array_key_exists('movie_title', $_GET)) {
-
     echo $_GET['movie_title'];
 }
 
@@ -108,10 +104,19 @@ if (array_key_exists('movie_title', $_GET)) {
         <div id="movie">
 
             <?php
+            //ワーニング対策
+            error_reporting(0);
+            //検索結果が無いときtotal_resultsが0の時
+            $hit_total = $movieArray['total_results'];
+            if ($hit_total < 1 and $movieArray) {
+                echo '<br/><br/><br/><div class=null>' . $_GET['movie_title'] . 'の検索に一致するものはありませんでした。</div>';
+                echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+            }
             if (empty($movieArray)) { //検索ボックスが空の場合なにもしない
-                echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
+                echo '<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>';
             } else if ($movieArray) {
                 $count = 0;
+                $page_count = $movieArray['total_pages'];
                 foreach ($movieArray['results'] as $record) {
                     $poster_path = $record['poster_path'];
                     $title = $record['original_title'];
@@ -128,16 +133,26 @@ if (array_key_exists('movie_title', $_GET)) {
                     $movie_Synopsis_url = file_get_contents("https://api.themoviedb.org/3/movie/" . $movie_id . "?" . "api_key=" . $apikey . "&language=ja");
                     $movie_Synopsis = json_decode($movie_Synopsis_url, true);
                     $overview = $movie_Synopsis['overview'];
+                    $notimg = "";
+                    // if (empty($overview) and $poster_path = 'null') {
+                    //     continue;
+                    // }"
+                    $netflixurl = "https://www.netflix.com/search?q=";
+                    // <a href="#">various</a>
                     if (empty($overview)) {
                         $overview = "あらすじが登録されていません😢";
                     }
-                    echo '<div class="example"> <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '">';
-                    echo ' <p>' . $title . '</p>';
+                    echo '<div class="example"> <a href="' . $netflixurl . $title . '"><img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '"></a>';
+                    echo ' <p>' . $title .  '</p>';
                     echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
-                  <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
-                  <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
+                            <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
+                            <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
+                }
+                if ($hit_total >= 1) {
+                    echo '<div class=null>検索結果:' . $_GET['movie_title'] . $hit_total . '件のうち1～' . $count . '件を表示</div>';
                 }
             }
+
 
             ?>
         </div>
