@@ -106,10 +106,15 @@
                 $count2 = "'.$count.'";
                 $none2 = "'none'";
                 $block2 = "'block'";
-                $netflixurl = "https://www.youtube.com/results?search_query=";
+                //ストリーミングサイトのURL
+                $netflixurl = "https://www.netflix.com/search?q=.$title.";
+                $youtubeurl = "https://www.youtube.com/results?search_query=.$title.";
+                $amazonurl = "https://www.amazon.co.jp/s?k=" . $title . "&i=instant-video";
+                //tmdbのデータから情報を表示
                 if ($count <= 20) { //トップhogeを取得
-                    echo '<div class="example"> <div class="neturl"><a href="' . $netflixurl . $title . '"> <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '"></a></div>';
-                    echo '<p>' . $count . $juni . $title . '</p>';
+                    echo '<div class="example">  <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '">';
+                    echo '<p>' . $count . $juni . $title .  '</p>';
+                    echo '<a href="' . $netflixurl . '"><span class="span-Netflix">Netflix</span></a><a href="' . $youtubeurl . '"><span class="span-Youtube">Youtube</span></a><a href="' . $amazonurl . '"><span class="span-Amazon">AmzonPrime</span></a>';
                     echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
                 <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
                 <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
@@ -126,8 +131,9 @@
     <br />
     <footer>
         <div class=footer>
-            <a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network &emsp;&emsp;</a>
-            <a href="http://localhost/sotuken/help.php">お問い合わせ</a>
+            <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
+            <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
+            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> <div></span>
     </footer>
 </body>
 

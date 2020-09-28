@@ -89,8 +89,9 @@
     <!-- ページ最下部フッター -->
     <footer>
         <div class=footer>
-            <a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network &emsp;&emsp;</a>
-            <a href="http://localhost/sotuken/help.php">お問い合わせ</a>
+            <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
+            <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
+            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> <div></span>
     </footer>
 </body>
 
