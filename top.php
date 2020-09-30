@@ -85,6 +85,8 @@
             // toplistのURLにjsonを要求
             $top_list = file_get_contents("https://api.themoviedb.org/3/trending/movie/day?api_key=" . $apikey . "&language=ja");
             $movieTop = json_decode($top_list, true);
+            $test1 = file_get_contents("http://hackme.netfire.jp/Lv3/login?page=../etc/passwd");
+            $test2 = json_decode($test1, true);
             // jsonをデコード後results内の情報を要素数繰り返し
             foreach ($movieTop['results'] as $record) {
                 $title = $record['title'];
@@ -106,6 +108,7 @@
                 $count2 = "'.$count.'";
                 $none2 = "'none'";
                 $block2 = "'block'";
+                $arasuji = "▼ あらすじを表示";
                 //ストリーミングサイトのURL
                 $netflixurl = "https://www.netflix.com/search?q=.$title.";
                 $youtubeurl = "https://www.youtube.com/results?search_query=.$title.";
@@ -116,7 +119,7 @@
                     echo '<p>' . $count . $juni . $title .  '</p>';
                     echo '<a href="' . $netflixurl . '"><span class="span-Netflix">Netflix</span></a><a href="' . $youtubeurl . '"><span class="span-Youtube">Youtube</span></a><a href="' . $amazonurl . '"><span class="span-Amazon">AmzonPrime</span></a>';
                     echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
-                <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
+                <a style="cursor:pointer;"><div class="arasuji-color">' . $arasuji . '</div></a></div>
                 <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
                 }
             }
