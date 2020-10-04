@@ -54,16 +54,16 @@
             });
         </script>
         <!-- ページ上部のリスト -->
+        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
+                <img src="img/icon2.png">
+            </a></div>
         <ul id="menu">
-            <li><a href="http://localhost/sotuken/top.php?movie_title">
-                    <div class="title-font"><img src="img/icon.png"> Canelé Films</div>
-                </a></li>
             <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="#">various</a>
+            <li><a href="http://localhost/sotuken/eigakan.php#">Nearest cinema</a></li>
+            <li><a href="#">various▼</a>
                 <ul>
-                    <li><a href="http://localhost/sotuken/eigakan.php#">近くの映画館を探す</a></li>
                     <li><a href="#">お気に入り映画</a></li>
-                    <!-- <li><a href="#">仮</a></li> -->
+                    <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
             <li><a href="http://localhost/sotuken/login.php">Login</a>
@@ -71,7 +71,7 @@
         </ul>
 
         <body>
-            <div class=top_text>
+            <div class=help-check-text>
                 <?php
 
                 require_once('../common/common.php');
@@ -83,7 +83,6 @@
                 $toiawasetxt = $post['toiawasetxt'];
 
                 $okflg = true;
-
                 if ($onamae == '') {
                     print '<br />お名前が入力されていません。<br /><br />';
                     $okflg = false;

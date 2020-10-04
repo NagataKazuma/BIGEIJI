@@ -211,48 +211,47 @@
         </script> -->
 
 
-        <body>
-
-            <br />
-            <div class=top_text>
-                <div class="about-font">
-                    Production　<span class="product-name" style="border-bottom: solid 2px;">（仮）</span></span><br /><br /><br /><br />
-                    Project member<br /><br />
-                    <span class="Postion">Art director</span><span class="Name">Toduka Minami</span><br />
-                    <span class="Postion">Video editor</span><span class="Name">Nagata Kazuma</span><br />
-                    <span class="Postion">Development of SQL</span><span class="Name">Hayase Kaito</span><br />
-                    <span class="Postion">Project Planning</span><span class="Name">Oshiro Eiji</span><br />
-                    <span class="Postion">Special Thanks</span><span class="Name">null</span><br /><br /><br />
-                    Development Environment<br /><br />
-                    <div class="floatall">
-                        <div class="floattest"><span class="soft">Text editor</span><span class="soft-name">Visual Studio Code</span></div>
-                        <div class="floattest"><span class="soft">Movie database</span><span class="soft-name">The Movie Database</span></div>
-                    </div>
-                    <div class="floatall">
-                        <div class="floattest"><span class="soft">Test environment</span><span class="soft-name">XAMPP</span></div>
-                        <div class="floattest"><span class="soft">Development language</span><span class="soft-name">PHP JS HTML SQL</span></div>
-                    </div>
-                    <div class="floatall">
-                        <div class="floattest"><span class="soft">Reference site</span><span class="soft-name">Qiita</span></div>
-                        <div class="floattest"><span class="soft">Source of photo</span><span class="soft-name">GIFER</span></div>
-                    </div>
-                    <div class="floatall">
-                        <div class="floattest"><span class="soft">Software platforms</span><span class="soft-name">Github</span></div>
-                        <div class="floattest"><span class="soft">Group ware</span><span class="soft-name">Discord Slack</span></div>
-                    </div>
-                    <div class="floatall">
-                        <div class="floattest"><span class="soft">Library</span><span class="soft-name">jQuery</span></div>
-                        <div class="floattest"><span class="soft">WebGIS</span><span class="soft-name">Google Maps</span></div>
-                    </div>
-                    <div class="floatall">
-                        <div class="floattest"><span class="soft">Server</span><span class="soft-name">AWS</span></div>
-                        <div class="floattest"><span class="soft">Web Font</span><span class="soft-name">Google Fonts</span></div>
-                    </div>
-                    <br /><br />
-                    <div class="fin-text">fin!</div>
-                    </a>
+        <br />
+        <div class=top_text>
+            <div class="about-font">
+                Production　<span class="product-name" style="border-bottom: solid 2px;">（仮）</span></span><br /><br /><br /><br />
+                Project member<br /><br />
+                <span class="Postion">Art director</span><span class="Name">Toduka Minami</span><br />
+                <span class="Postion">Video editor</span><span class="Name">Nagata Kazuma</span><br />
+                <span class="Postion">Development of SQL</span><span class="Name">Hayase Kaito</span><br />
+                <span class="Postion">Project Planning</span><span class="Name">Oshiro Eiji</span><br /><br />
+                Special Thanks<br /><br />
+                <span class="Postion">Advisor</span><span class="Name">hogehoge</span><br /><br />
+                Development Environment<br /><br />
+                <div class="floatall">
+                    <div class="floattest"><span class="soft">Text editor</span><span class="soft-name">Visual Studio Code</span></div>
+                    <div class="floattest"><span class="soft">Movie database</span><span class="soft-name">The Movie Database</span></div>
                 </div>
+                <div class="floatall">
+                    <div class="floattest"><span class="soft">Test environment</span><span class="soft-name">XAMPP</span></div>
+                    <div class="floattest"><span class="soft">Development language</span><span class="soft-name">PHP JS HTML SQL</span></div>
+                </div>
+                <div class="floatall">
+                    <div class="floattest"><span class="soft">Reference site</span><span class="soft-name">Qiita</span></div>
+                    <div class="floattest"><span class="soft">Source of photo</span><span class="soft-name">GIFER</span></div>
+                </div>
+                <div class="floatall">
+                    <div class="floattest"><span class="soft">Software platforms</span><span class="soft-name">Github</span></div>
+                    <div class="floattest"><span class="soft">Group ware</span><span class="soft-name">Discord Slack</span></div>
+                </div>
+                <div class="floatall">
+                    <div class="floattest"><span class="soft">Library</span><span class="soft-name">jQuery</span></div>
+                    <div class="floattest"><span class="soft">WebGIS</span><span class="soft-name">Google Maps</span></div>
+                </div>
+                <div class="floatall">
+                    <div class="floattest"><span class="soft">Server</span><span class="soft-name">AWS</span></div>
+                    <div class="floattest"><span class="soft">Web Font</span><span class="soft-name">Google Fonts</span></div>
+                </div>
+                <br /><br />
+                <div class="fin-text">fin!</div>
+                </a>
             </div>
+        </div>
 
 
     </div>

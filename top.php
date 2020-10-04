@@ -57,19 +57,19 @@
             });
         </script>
         <!-- ページ上部のリスト -->
+        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
+                <img src="img/icon2.png">
+            </a></div>
         <ul id="menu">
-            <li><a href="http://localhost/sotuken/top.php?movie_title">
-                    <div class="title-font"><img src="img/icon.png"> Canelé Films</div>
-                </a></li>
-            <li><a href="http://localhost/sotuken/movie_search.php?movie_title#"><span class="testli">Search</span></a></li>
-            <li><a href="#"><span class="">various</span></a>
+            <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
+            <li><a href="http://localhost/sotuken/eigakan.php#">Nearest cinema</a></li>
+            <li><a href="#">various▼</a>
                 <ul>
-                    <li><a href="http://localhost/sotuken/eigakan.php#">近くの映画館を探す</a></li>
                     <li><a href="#">お気に入り映画</a></li>
-                    <!-- <li><a href="#">仮</a></li> -->
+                    <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="http://localhost/sotuken/login.php"><span class="testli">Login</span></a>
+            <li><a href="http://localhost/sotuken/login.php">Login</a>
             </li>
         </ul>
         <!-- ヘッダー画像実装予定 -->
@@ -109,7 +109,7 @@
                 $count2 = "'.$count.'";
                 $none2 = "'none'";
                 $block2 = "'block'";
-                $arasuji = "▼ あらすじを表示";
+                $arasuji = "あらすじを表示▼";
                 //ストリーミングサイトのURL
                 $netflixurl = "https://www.netflix.com/search?q=$title";
                 $youtubeurl = "https://www.youtube.com/results?search_query=$title";
