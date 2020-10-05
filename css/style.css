@@ -221,7 +221,7 @@ p {
     text-align: center;
     margin-left: 60px;
     margin-right: 60px;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .example p {
@@ -236,12 +236,13 @@ p {
 }
 
 .null {
-    color: #b97a56;
+    color: #ffffff;
     position: absolute;
-    top: 55%;
+    top: 60%;
     right: 1%;
     opacity: 0.8;
     float: left;
+    border-bottom: 2px solid #ffffff;
 }
 
 .neturl {
