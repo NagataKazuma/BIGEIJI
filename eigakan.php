@@ -70,8 +70,8 @@
             </li>
         </ul>
         <div class="helpcon">
-            <br /><br />
-            <iframe src="" id="ifr" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <div class="java-text">※下記マップはJavaScriptを使用しています。<a href="https://java.com/ja/download/">表示されない方はこちら</a></div>
+            <div class="map"><iframe src="" id="ifr" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
             <script>
                 function success(pos) {
                     const lat = pos.coords.latitude;

@@ -139,6 +139,7 @@ if (array_key_exists('movie_title', $_GET)) {
                     $movie_Synopsis = json_decode($movie_Synopsis_url, true);
                     $overview = $movie_Synopsis['overview'];
                     $notimg = "";
+                    $dab = '"';
                     // if (empty($overview) and $poster_path = 'null') {
                     //     continue;
                     // }"
@@ -157,7 +158,9 @@ if (array_key_exists('movie_title', $_GET)) {
                             <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
                 }
                 if ($hit_total >= 1) {
-                    echo '<div class="null">検索結果:' . $_GET['movie_title'] . $hit_total . '件のうち1～' . $count . '件を表示</div>';
+                    echo '<div class="null">検索結果:' . $dab . $_GET['movie_title'] . $dab . $hit_total . '件のうち1～' . $count . '件を表示</div>';
+                } elseif ($hit_total <= 20) {
+                    echo '<div class="null">検索結果:' . $dab . $_GET['movie_title'] . $dab . $hit_total . '件のうち1～20件を表示</div>';
                 }
             }
 
