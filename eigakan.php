@@ -70,15 +70,31 @@
             </li>
         </ul>
         <div class="helpcon">
+            <br /><br />
+            <iframe src="" id="ifr" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <script>
+                function success(pos) {
+                    const lat = pos.coords.latitude;
+                    const lng = pos.coords.longitude;
+                    const accuracy = pos.coords.accuracy;
+                    const aida = ',';
+                    $('loc').text(`${lng}${aida}${lat}`);
+                    $('#accuracy').text(accuracy);
+                    let address = 'https://maps.google.co.jp/maps?output=embed&q=映画館&' + lat + aida + lng + ',13z';
+                    document.getElementById("ifr").src = address;
+
+                }
+
+                function fail(pos) {
+                    alert('位置情報の取得に失敗しました。エラーコード：');
+                }
+
+                navigator.geolocation.getCurrentPosition(success, fail);
+            </script>
 
             <body>
 
-                <br />
-                <div class=top_text>
-                    <h1>実装予定です</h1>
-                </div><br />
-                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d52488.85376799608!2d137.7079077627731!3d34.69122037862246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5pig55S76aSo!5e0!3m2!1sja!2sjp!4v1600046131647!5m2!1sja!2sjp" width="650" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-
+                <br /><br /><br />
 
 
         </div>
