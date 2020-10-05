@@ -77,7 +77,9 @@
                 <br />
                 <div class=top_text>
                     <h1>
-                        <div class="title-font"><img src="img/icon.png"> Canelé Filmsに登録</div>
+                        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
+                                <img src="img/icon2.png">
+                            </a></div>
                     </h1>
                 </div><br />
 
