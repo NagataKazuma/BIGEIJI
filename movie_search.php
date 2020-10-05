@@ -29,10 +29,13 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand rel=" stylesheet">
+    <style type="text/css">
+    </style>
 </head>
 
 <body>
-    <div class="wrapper">
+    <!-- 背景画像background="img/animal.jpg" -->
+    <div class="wrpper">
         <!-- ページトップに戻す描写 -->
         <div id="page_top"><a href="#"></a></div>
         <!-- ローディング画面 -->
@@ -65,16 +68,16 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
             });
         </script>
         <!-- ページ上部のリスト -->
+        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
+                <img src="img/icon2.png">
+            </a></div>
         <ul id="menu">
-            <li><a href="http://localhost/sotuken/top.php?movie_title">
-                    <div class="title-font"><img src="img/icon.png"> Canelé Films</div>
-                </a></li>
             <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="#">various</a>
+            <li><a href="http://localhost/sotuken/eigakan.php#">Nearest cinema</a></li>
+            <li><a href="#">various▼</a>
                 <ul>
-                    <li><a href="http://localhost/sotuken/eigakan.php#">近くの映画館を探す</a></li>
                     <li><a href="#">お気に入り映画</a></li>
-                    <!-- <li><a href="#">仮</a></li> -->
+                    <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
             <li><a href="http://localhost/sotuken/login.php">Login</a>
@@ -88,13 +91,15 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
                     <fieldset class="form-group">
             </div>
             <ul class="ser-box">
-                <li><input type="text" class="form-control" name="movie_title" id="movie_title" required placeholder="映画のタイトル" value="
+                <li>
+                    <div class="search-box"><input type="text" class="form-control" name="movie_title" id="movie_title" required placeholder="映画のタイトル" value="
 <?php
 if (array_key_exists('movie_title', $_GET)) {
     echo $_GET['movie_title'];
 }
 
-?>"></li>
+?>"></div>
+                </li>
                 </fieldset>
                 <li><button type="submit" class="btn btn-primary">検索</button></li>
             </ul>
@@ -137,22 +142,22 @@ if (array_key_exists('movie_title', $_GET)) {
                     // if (empty($overview) and $poster_path = 'null') {
                     //     continue;
                     // }"
-                    $netflixurl = "https://www.netflix.com/search?q=.$title.";
-                    $youtubeurl = "https://www.youtube.com/results?search_query=.$title.";
-                    $amazonurl = "https://www.amazon.co.jp/s?k=" . $title . "&i=instant-video";
+                    $netflixurl = "https://www.netflix.com/search?q=$title";
+                    $youtubeurl = "https://www.youtube.com/results?search_query=$title";
+                    $amazonurl = "https://www.amazon.co.jp/s?k=$title&i=instant-video";
                     // <a href="#">various</a>
                     if (empty($overview)) {
                         $overview = "あらすじが登録されていません😢";
                     }
                     echo '<div class="example"><img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '">';
                     echo ' <p>' . $title .  '</p>';
-                    echo '<a href="' . $netflixurl . '"><span class="span-Netflix">Netflix</span></a><a href="' . $youtubeurl . '"><span class="span-Youtube">Youtube</span></a><a href="' . $amazonurl . '"><span class="span-Amazon">AmzonPrime</span></a>';
+                    echo '<a href="' . $netflixurl . '"><span class="span-Netflix">Netflix</span></a><a href="' . $youtubeurl . '"><span class="span-Youtube">YouTube</span></a><a href="' . $amazonurl . '"><span class="span-Amazon">AmzonPrime</span></a>';
                     echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
-                            <a style="cursor:pointer;"><div class="arasuji-color">▼ あらすじを表示</div></a></div>
+                            <a style="cursor:pointer;"><div class="arasuji-color">あらすじを表示▼</div></a></div>
                             <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
                 }
                 if ($hit_total >= 1) {
-                    echo '<div class=null>検索結果:' . $_GET['movie_title'] . $hit_total . '件のうち1～' . $count . '件を表示</div>';
+                    echo '<div class="null">検索結果:' . $_GET['movie_title'] . $hit_total . '件のうち1～' . $count . '件を表示</div>';
                 }
             }
 
@@ -162,13 +167,10 @@ if (array_key_exists('movie_title', $_GET)) {
     </div>
     <div class="push"></div>
     </div>
+    </div>
     <!-- ページ最下部フッター -->
     <footer>
         <div class=footer>
             <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
             <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
-            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> <div></span>
-    </footer>
-</body>
-
-</html>
+            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>

@@ -54,31 +54,47 @@
             });
         </script>
         <!-- ページ上部のリスト -->
+        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
+                <img src="img/icon2.png">
+            </a></div>
         <ul id="menu">
-            <li><a href="http://localhost/sotuken/top.php?movie_title">
-                    <div class="title-font"><img src="img/icon.png"> Canelé Films</div>
-                </a></li>
             <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="#">various</a>
+            <li><a href="http://localhost/sotuken/eigakan.php#">Nearest cinema</a></li>
+            <li><a href="#">various▼</a>
                 <ul>
-                    <li><a href="http://localhost/sotuken/eigakan.php#">近くの映画館を探す</a></li>
                     <li><a href="#">お気に入り映画</a></li>
-                    <!-- <li><a href="#">仮</a></li> -->
+                    <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
             <li><a href="http://localhost/sotuken/login.php">Login</a>
             </li>
         </ul>
         <div class="helpcon">
+            <br /><br />
+            <iframe src="" id="ifr" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <script>
+                function success(pos) {
+                    const lat = pos.coords.latitude;
+                    const lng = pos.coords.longitude;
+                    const accuracy = pos.coords.accuracy;
+                    const aida = ',';
+                    $('loc').text(`${lng}${aida}${lat}`);
+                    $('#accuracy').text(accuracy);
+                    let address = 'https://maps.google.co.jp/maps?output=embed&q=映画館&' + lat + aida + lng + ',13z';
+                    document.getElementById("ifr").src = address;
+
+                }
+
+                function fail(pos) {
+                    alert('位置情報の取得に失敗しました。エラーコード：');
+                }
+
+                navigator.geolocation.getCurrentPosition(success, fail);
+            </script>
 
             <body>
 
-                <br />
-                <div class=top_text>
-                    <h1>実装予定です</h1>
-                </div><br />
-                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d52488.85376799608!2d137.7079077627731!3d34.69122037862246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5pig55S76aSo!5e0!3m2!1sja!2sjp!4v1600046131647!5m2!1sja!2sjp" width="650" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-
+                <br /><br /><br />
 
 
         </div>
@@ -90,8 +106,4 @@
         <div class=footer>
             <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
             <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
-            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> <div></span>
-    </footer>
-</body>
-
-</html>
+            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>
