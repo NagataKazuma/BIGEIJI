@@ -111,6 +111,7 @@ if (array_key_exists('movie_title', $_GET)) {
             <?php
             //ワーニング対策
             error_reporting(0);
+            $_GET['movie_title'] = mb_convert_kana($_GET['movie_title'], 'S');
             //検索結果が無いときtotal_resultsが0の時
             $hit_total = $movieArray['total_results'];
             if ($hit_total < 1 and $movieArray) {
