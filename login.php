@@ -70,25 +70,24 @@
             </li>
         </ul>
 
-        <div class="helpcon">
+        <body>
 
-            <body>
+<!-- 10月6日　ログイン作成（テンプレ） -->
+    <br />
+    <form method = "post" action = "login_add_check.php">
+    メールアドレスを入力してください。<br />
+    <input type ="email" name = "mail" style="width:300px"><br />
+    パスワードを入力してください。<br />
+    <input type ="password" name = "pass" style="width:300px"><br />
+    パスワードをもう一度入力してください。<br />
+    <input type ="password" name = "pass2" style="width:300px"><br />
+    <br />
+    <input type = "button" onclick = "history.back()" value ="戻る">
+    <input type = "submit" value = "OK">
+    </form>
 
-                <br />
-                <div class=top_text>
-                    <h1>
-                        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
-                                <img src="img/icon2.png">
-                            </a></div>
-                    </h1>
-                </div><br />
-
-
-        </div>
-        <div class="push"></div>
-    </div>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-    <!-- ページ最下部フッター -->
+            
+ <!-- ページ最下部フッター -->
     <footer>
         <div class=footer>
             <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
