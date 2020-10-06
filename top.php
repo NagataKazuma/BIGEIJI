@@ -76,7 +76,7 @@
         <!-- <div class="header-bg"></div> -->
         <div class="container">
             <!-- トップテキスト -->
-            <div class=top_text>今日の映画TOP20</div>
+            <div class=top_text>Today Movie TOP20</div>
             <!-- TMDBapiを投げてレスポンスを描写 -->
             <?php
             $apikey = "3791fa354758148d1190e3e0af17612d"; //TMDbのAPIキー
