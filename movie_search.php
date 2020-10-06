@@ -127,6 +127,10 @@ if (array_key_exists('movie_title', $_GET)) {
                     $title = $record['original_title'];
                     $movie_id = $record['id'];
                     $img = "https://image.tmdb.org/t/p/w300_and_h450_bestv2" . $poster_path;
+                    if (empty($poster_path)) {
+                        //$img = "https://www.caycegoods.com/file/shared/img/no-image.gif";//画像が無かったら置き換える
+                        continue; //画像が無かったら表示しない
+                    }
                     $img_get = file_get_contents($img);
                     $enc_img = base64_encode($img_get);
                     $imginfo = getimagesize('data:application/octet-stream;base64,' . $enc_img);
@@ -140,9 +144,6 @@ if (array_key_exists('movie_title', $_GET)) {
                     $overview = $movie_Synopsis['overview'];
                     $notimg = "";
                     $dab = '"';
-                    // if (empty($overview) and $poster_path = 'null') {
-                    //     continue;
-                    // }"
                     $netflixurl = "https://www.netflix.com/search?q=$title";
                     $youtubeurl = "https://www.youtube.com/results?search_query=$title";
                     $amazonurl = "https://www.amazon.co.jp/s?k=$title&i=instant-video";
@@ -157,9 +158,9 @@ if (array_key_exists('movie_title', $_GET)) {
                             <a style="cursor:pointer;"><div class="arasuji-color">あらすじを表示▼</div></a></div>
                             <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
                 }
-                if ($hit_total >= 1) {
+                if ($hit_total >= 1 and $hit_total <= 19) {
                     echo '<div class="null">検索結果:' . $dab . $_GET['movie_title'] . $dab . $hit_total . '件のうち1～' . $count . '件を表示</div>';
-                } elseif ($hit_total <= 20) {
+                } elseif ($hit_total >= 20) {
                     echo '<div class="null">検索結果:' . $dab . $_GET['movie_title'] . $dab . $hit_total . '件のうち1～20件を表示</div>';
                 }
             }
