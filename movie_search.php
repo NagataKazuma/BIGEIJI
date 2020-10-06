@@ -3,6 +3,7 @@ error_reporting(0);
 $apikey = "3791fa354758148d1190e3e0af17612d"; //TMDbのAPIキー
 $error = "";
 if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
+    $_GET['movie_title'] = mb_convert_kana($_GET['movie_title'], 'S', 'UTF-8');
     $url_Contents = file_get_contents("https://api.themoviedb.org/3/search/movie?api_key=" . $apikey . "&query=" . $_GET['movie_title'] . "&page=1&include_adult=false");
     $movieArray = json_decode($url_Contents, true);
 }
@@ -111,7 +112,6 @@ if (array_key_exists('movie_title', $_GET)) {
             <?php
             //ワーニング対策
             error_reporting(0);
-            $_GET['movie_title'] = mb_convert_kana($_GET['movie_title'], 'S');
             //検索結果が無いときtotal_resultsが0の時
             $hit_total = $movieArray['total_results'];
             if ($hit_total < 1 and $movieArray) {
