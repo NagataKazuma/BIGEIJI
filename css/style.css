@@ -16,6 +16,38 @@
     z-index: 10;
 }
 
+
+/* styles for desktop */
+
+.tinynav {
+    display: none
+}
+
+
+/* styles for mobile */
+
+@media screen and (max-width: 600px) {
+    .tinynav {
+        display: block
+    }
+    #menu {
+        display: none
+    }
+}
+
+select.tinynav {
+    position: absolute;
+    right: 0;
+    font-size: 1.5em;
+    /* 文字の大きさ */
+    width: 20%;
+    /* 横幅 */
+    background-color: #141414;
+    /* 背景色 */
+    /* 枠線 */
+    color: #ffffff;
+}
+
 .title-font {
     padding-top: 20px;
     padding-bottom: 10px;
@@ -211,8 +243,8 @@ p {
 .top_text {
     color: #ffffff;
     margin-top: 80px;
-    font-size: 70px;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 50px;
+    font-family: 'Courier Prime', monospace;
 }
 
 .example {
@@ -248,6 +280,7 @@ p {
 
 .java-text {
     margin-top: 10%;
+    color: rgb(255, 255, 255);
 }
 
 .neturl {
