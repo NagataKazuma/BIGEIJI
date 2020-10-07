@@ -77,49 +77,55 @@
 require_once('../common/common.php');
 
 $post=sanitize($_POST);
-$email = $post['mail'];
-$password = $post['pass'];
-$password2 = $post['pass2'];
+$email_mail = $post['mail'];
+$password_pass = $post['pass'];
+$password_pass2 = $post['pass2'];
 
-if($email== '')
+if($email_mail== '')
 {
     print'メールアドレスが入力してください。<br />';
 }
 else
 {
     print'アドレス:';
-    print $email;
+    print $email_mail;
     print'<br />';
 }
 
-if($password=='')
+if($password_pass=='')
 {
     print'パスワードが入力してください。<br />';
 }
-
-if($password!=$password2)
+if(preg_match("/^[A-Z]\w{7,14}$/", $password_pass)) 
 {
-    print'パスワードが一致しません。<br />';
-}
 
-if($email==''||$password==''||$password!=$password2)
-{
-    print'<form>';
-    print'<input type = "button" onclick = "history.back()"value="戻る">';
-    print'</form>';
-}
-else
-{
-    $password = md5($password);
-    print'<form method ="post" action ="login_add_done.php">';
-    print'<input type = "hidden" name = "mail" value = "'.$email.'">';
-    print'<input type = "hidden" name = "pass" value = "'.$password.'">';
-    print'<br />';
-    print'<input type = "button" onclick = "history.back()" value = "戻る">';
-    print'<input type = "submit" value = "OK">';
-    print'</form.';
-}
+    if($password_pass!=$password_pass2)
+    {
+        print'パスワードが一致しません。<br />';
+    }
 
+    if($email_mail==''||$password_pass==''||$password_pass!=$password_pass2)
+    {
+        print'<form>';
+        print'<input type = "button" onclick = "history.back()"value="戻る">';
+        print'</form>';
+    }
+    else
+    {
+        $password_pass=md5($password_pass);
+        print'<form method ="post" action ="login_add_done.php">';
+        print'<input type = "hidden" name = "mail" value = "'.$email_mail.'">';
+        print'<input type = "hidden" name = "pass" value = "'.$password_pass.'">';
+        print'<br />';
+        print'<input type = "button" onclick = "history.back()" value = "戻る">';
+        print'<input type = "submit" value = "OK">';
+        print'</form.';
+    }
+}
+else 
+    {
+        print "<p>パスワードが不適切です。</p>";
+    }
 ?>
 
 </body>

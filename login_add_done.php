@@ -78,8 +78,8 @@ try
 require_once('../common/common.php');
 
 $post=sanitize($_POST);
-$email=$post['mail'];
-$password=$post['pass'];
+$email_mail=$post['mail'];
+$password_pass=$post['pass'];
 
 $dsn ='mysql:dbname=shop;host=localhost:3307;charset=utf8';
 $user='root';
@@ -89,13 +89,13 @@ $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 $sql ="INSERT INTO user_deta (email,password) VALUES (?,?)";
 $stmt=$dbh->prepare($sql);
-$data[]=$email;
-$data[]=$password;
+$data[]=$email_mail;
+$data[]=$password_pass;
 $stmt->execute($data);
 
 $dbh=null;
 
-print $email;
+print $email_mail;
 print'を追加しました。<br />';
 
 }
