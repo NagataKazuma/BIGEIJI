@@ -4,7 +4,7 @@ $apikey = "3791fa354758148d1190e3e0af17612d"; //TMDbのAPIキー
 $error = "";
 if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
     $_GET['movie_title'] = mb_convert_kana($_GET['movie_title'], 'S', 'UTF-8');
-    $url_Contents = file_get_contents("https://api.themoviedb.org/3/search/movie?api_key=" . $apikey . "&query=" . $_GET['movie_title'] . "&page=1&include_adult=false");
+    $url_Contents = file_get_contents("https://api.themoviedb.org/3/search/movie?api_key=" . $apikey . "&language=ja&&query=" . $_GET['movie_title'] . "&page=1&include_adult=false");
     $movieArray = json_decode($url_Contents, true);
 }
 ?>
@@ -22,6 +22,7 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- ローディング画面実装jsリンク -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/tinynav.min.js"></script>
     <!-- CSSリンク -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -68,13 +69,18 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
                 jQuery('#loader-bg').hide();
             });
         </script>
+        <script type="text/javascript">
+            $(function() {
+                $("#menu").tinyNav();
+            });
+        </script>
         <!-- ページ上部のリスト -->
         <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
                 <img src="img/icon2.png">
             </a></div>
         <ul id="menu">
             <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="http://localhost/sotuken/eigakan.php#">Nearest cinema</a></li>
+            <li><a href="http://localhost/sotuken/eigakan.php#">Cinema</a></li>
             <li><a href="#">various▼</a>
                 <ul>
                     <li><a href="#">お気に入り映画</a></li>

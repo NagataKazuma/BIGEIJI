@@ -21,10 +21,16 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/tinynav.min.js"></script>
 
     <script>
         jQuery(window).on('load', function() {
             jQuery('#loader-bg').hide();
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $("#menu").tinyNav();
         });
     </script>
 
@@ -33,7 +39,7 @@
         </a></div>
     <ul id="menu">
         <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-        <li><a href="http://localhost/sotuken/eigakan.php#">Nearest cinema</a></li>
+        <li><a href="http://localhost/sotuken/eigakan.php#">Cinema</a></li>
         <li><a href="#">various▼</a>
             <ul>
                 <li><a href="#">お気に入り映画</a></li>
