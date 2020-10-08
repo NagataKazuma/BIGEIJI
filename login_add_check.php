@@ -112,7 +112,7 @@ if(preg_match("/^[A-Z]\w{7,14}$/", $password_pass))
     }
     else
     {
-        $password_pass=md5($password_pass);
+        $password_pass=password_hash($_POST['pass'],PASSWORD_DEFAULT);
         print'<form method ="post" action ="login_add_done.php">';
         print'<input type = "hidden" name = "mail" value = "'.$email_mail.'">';
         print'<input type = "hidden" name = "pass" value = "'.$password_pass.'">';

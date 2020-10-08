@@ -59,7 +59,7 @@
             </a></div>
         <ul id="menu">
             <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="http://localhost/sotuken/eigakan.php#">Nearest cinema</a></li>
+            <li><a href="http://localhost/sotuken/eigakan.php#">cinema</a></li>
             <li><a href="#">various▼</a>
                 <ul>
                     <li><a href="#">お気に入り映画</a></li>
@@ -70,52 +70,61 @@
             </li>
         </ul>
 
-<!-- 10月6日　ログイン認証 -->
+        <body>
+
+<!-- 10月6日　ログイン作成（テンプレ） -->
 <?php
 
-try
-{
-require_once('../common/common.php');
+    try
+    {
+    require_once('../common/common.php');
 
-$post=sanitize($_POST);
-$email_mail=$post['mail'];
-$password_pass=$post['pass'];
+    $post=sanitize($_POST);
+    $email_mail=$post['mail'];
+    $password_pass=$post['pass'];
 
+    $dsn='mysql:dbname=shop;host=localhost:3307;charset=utf8';
+    $user='root';
+    $password='';
+    $dbh=new PDO($dsn,$user,$password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-$dsn ='mysql:dbname=shop;host=localhost:3307;charset=utf8';
-$user='root';
-$password='';
-$dbh=new PDO($dsn,$user,$password);
-$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    $sql='SELECT id,password,email FROM user_deta WHERE email=?';
+    $stmt=$dbh->prepare($sql);
+    $data[]=$email_mail;
+    $stmt->execute($data);
 
-$sql ="INSERT INTO user_deta (email,password) VALUES (?,?)";
-$stmt=$dbh->prepare($sql);
-$data[]=$email_mail;
-$data[]=$password_pass;
-$stmt->execute($data);
+    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+    $db_pass=$rec['password'];
+    if(!password_verify($password_pass,$db_pass))
+    {
+    
+    print'パスワードが間違っています。';
+    
+    }
+    else 
+    {
+        header('Location:top.php');
+    }
 
-$dbh=null;
+    $dbh=null;
 
-print $email_mail;
-print'を追加しました。<br />';
-
-}
-catch(Exception $e)
-{
-    print'ただいま障害により大変ご迷惑をお掛けしております。';
-    echo'捕捉した例外: ', $e->getMessage(), "\n";
+    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    catch(Exception $e){
+    print'ただいま障害のより大変ご迷惑をお掛けしております。';
+    echo $e->getMessage();
     exit();
-}
+    }
 
 ?>
-
-<a href = "login.php">ログインへ</a>
-<a href = "logout.php">ログアウト</a><br />
-
+<br />
+<a href = "login.php">ログインへ戻る</a>
+</body>
 </html>
 
-            
- <!-- ページ最下部フッター -->
+
+<!-- ページ最下部フッター -->
     <footer>
         <div class=footer>
             <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
