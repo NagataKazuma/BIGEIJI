@@ -59,7 +59,7 @@
             </a></div>
         <ul id="menu">
             <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="http://localhost/sotuken/eigakan.php#">Nearest cinema</a></li>
+            <li><a href="http://localhost/sotuken/eigakan.php#">cinema</a></li>
             <li><a href="#">various▼</a>
                 <ul>
                     <li><a href="#">お気に入り映画</a></li>
@@ -74,16 +74,16 @@
 
 <!-- 10月6日　ログイン作成（テンプレ） -->
     <br />
-    <form method = "post" action = "login_add_check.php">
-    メールアドレスを入力してください。<br />
-    <input type ="email" name = "mail" style="width:300px"><br />
-    パスワードを入力してください。<br />
-     <input type ="password" name = "pass" style="width:300px"><br />
-    パスワードをもう一度入力してください。<br />
-    <input type ="password" name = "pass2" style="width:300px"><br />
     <br />
-    <input type = "button" onclick = "history.back()" value ="戻る">
-    <input type = "submit" value = "OK">
+    会員ログイン<br />
+    <form method = "post" action = "member_login_check.php">
+    メールアドレス<br />
+    <input type ="email" name = "mail" style="width:300px"><br />
+    パスワード<br />
+     <input type ="password" name = "pass" style="width:300px"><br />
+    <br />
+    <input type = "submit" value = "ログイン">
+    <a href = "register.php">新規登録はこちら</a>
     </form>
 
             
