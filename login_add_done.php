@@ -10,6 +10,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- ローディング画面実装jsリンク -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/tinynav.min.js"></script>
     <!-- CSSリンク -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -53,71 +54,85 @@
                 jQuery('#loader-bg').hide();
             });
         </script>
+        <script type="text/javascript">
+            $(function() {
+                $("#menu").tinyNav();
+            });
+        </script>
         <!-- ページ上部のリスト -->
-        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
+        <div class="title-font"><a href="top.php?movie_title">
                 <img src="img/icon2.png">
             </a></div>
         <ul id="menu">
-            <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="http://localhost/sotuken/eigakan.php#">Nearest cinema</a></li>
+            <li><a href="#">Search▼</a>
+                <ul>
+                    <li><a href="movie_search.php">映画を探す</a></li>
+                    <li><a href="popular.php">定番映画を探す</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Cinema▼</a>
+                <ul>
+                    <li><a href="eigakan.php">近くの映画館</a></li>
+                    <li><a href="nowplay.php">上映中の映画</a></li>
+                </ul>
+            </li>
             <li><a href="#">various▼</a>
                 <ul>
                     <li><a href="#">お気に入り映画</a></li>
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="http://localhost/sotuken/login.php">Login</a>
+            <li><a href="login.php">Login</a>
             </li>
         </ul>
+        <!-- 10月6日　ログイン認証 -->
+        <?php
 
-<!-- 10月6日　ログイン認証 -->
-<?php
+        try {
+            require_once('../common/common.php');
 
-try
-{
-require_once('../common/common.php');
-
-$post=sanitize($_POST);
-$email_mail=$post['mail'];
-$password_pass=$post['pass'];
+            $post = sanitize($_POST);
+            $email_mail = $post['mail'];
+            $password_pass = $post['pass'];
 
 
-$dsn ='mysql:dbname=shop;host=localhost:3307;charset=utf8';
-$user='root';
-$password='';
-$dbh=new PDO($dsn,$user,$password);
-$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $dsn = 'mysql:dbname=shop;host=localhost:3307;charset=utf8';
+            $user = 'root';
+            $password = '';
+            $dbh = new PDO($dsn, $user, $password);
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql ="INSERT INTO user_deta (email,password) VALUES (?,?)";
-$stmt=$dbh->prepare($sql);
-$data[]=$email_mail;
-$data[]=$password_pass;
-$stmt->execute($data);
+            $sql = "INSERT INTO user_deta (email,password) VALUES (?,?)";
+            $stmt = $dbh->prepare($sql);
+            $data[] = $email_mail;
+            $data[] = $password_pass;
+            $stmt->execute($data);
 
-$dbh=null;
+            $dbh = null;
 
-print $email_mail;
-print'を追加しました。<br />';
+            print $email_mail;
+            print 'を追加しました。<br />';
+        } catch (Exception $e) {
+            print 'ただいま障害により大変ご迷惑をお掛けしております。';
+            echo '捕捉した例外: ', $e->getMessage(), "\n";
+            exit();
+        }
 
-}
-catch(Exception $e)
-{
-    print'ただいま障害により大変ご迷惑をお掛けしております。';
-    echo'捕捉した例外: ', $e->getMessage(), "\n";
-    exit();
-}
+        ?>
 
-?>
-
-<a href = "login.php">ログインへ</a>
-<a href = "logout.php">ログアウト</a><br />
+        <a href="login.php">ログインへ</a>
+        <a href="logout.php">ログアウト</a><br />
 
 </html>
 
-            
- <!-- ページ最下部フッター -->
-    <footer>
-        <div class=footer>
-            <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
-            <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
-            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>
+
+<!-- ページ最下部フッター -->
+<footer>
+    <div class=footer1>
+        <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
+        <span class="footer-span"><a href="help.php">お問い合わせ</a></span>
+        <span class="footer-span"><a href=about.php>このサイトについて </a> </span> </div>
+</footer>
+</body>
+
+</html>

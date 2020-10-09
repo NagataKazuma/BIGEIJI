@@ -217,8 +217,8 @@
             <div class="about-font">
                 Production　<span class="product-name" style="border-bottom: solid 2px;">（仮）</span></span><br /><br /><br /><br />
                 Project member<br /><br />
-                <span class="Postion">Art director</span><span class="Name">Toduka Minami</span><br />
-                <span class="Postion">Video editor</span><span class="Name">Nagata Kazuma</span><br />
+                <span class="Postion">Art director</span><span class="Name">Tozuka Minami</span><br />
+                <span class="Postion">Development of SQL</span><span class="Name">Nagata Kazuma</span><br />
                 <span class="Postion">Development of SQL</span><span class="Name">Hayase Kaito</span><br />
                 <span class="Postion">Project Planning</span><span class="Name">Oshiro Eiji</span><br /><br />
                 Special Thanks<br /><br />

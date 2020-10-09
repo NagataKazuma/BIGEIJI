@@ -34,19 +34,29 @@
         });
     </script>
 
-    <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
+    <div class="title-font"><a href="top.php?movie_title">
             <img src="img/icon2.png">
         </a></div>
     <ul id="menu">
-        <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-        <li><a href="http://localhost/sotuken/eigakan.php#">Cinema</a></li>
+        <li><a href="#">Search▼</a>
+            <ul>
+                <li><a href="movie_search.php?movie_title#">映画を探す</a></li>
+                <li><a href="popular.php">定番映画を探す</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Cinema▼</a>
+            <ul>
+                <li><a href="eigakan.php">近くの映画館</a></li>
+                <li><a href="nowplay.php">上映中の映画</a></li>
+            </ul>
+        </li>
         <li><a href="#">various▼</a>
             <ul>
                 <li><a href="#">お気に入り映画</a></li>
                 <li><a href="#">掲示板</a></li>
             </ul>
         </li>
-        <li><a href="http://localhost/sotuken/login.php">Login</a>
+        <li><a href="login.php">Login</a>
         </li>
     </ul>
 

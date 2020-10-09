@@ -10,6 +10,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- ローディング画面実装jsリンク -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/tinynav.min.js"></script>
     <!-- CSSリンク -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -53,80 +54,99 @@
                 jQuery('#loader-bg').hide();
             });
         </script>
+        <script type="text/javascript">
+            $(function() {
+                $("#menu").tinyNav();
+            });
+        </script>
         <!-- ページ上部のリスト -->
-        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
-                <img src="img/icon2.png">
-            </a></div>
         <ul id="menu">
-            <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="http://localhost/sotuken/eigakan.php#">cinema</a></li>
+            <li><a href="#">Search▼</a>
+                <ul>
+                    <li><a href="movie_search.php">映画を探す</a></li>
+                    <li><a href="popular.php">定番映画を探す</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Cinema▼</a>
+                <ul>
+                    <li><a href="eigakan.php">近くの映画館</a></li>
+                    <li><a href="nowplay.php">上映中の映画</a></li>
+                </ul>
+            </li>
             <li><a href="#">various▼</a>
                 <ul>
                     <li><a href="#">お気に入り映画</a></li>
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="http://localhost/sotuken/login.php">Login</a>
+            <li><a href="login.php">Login</a>
             </li>
         </ul>
 
         <body>
 
-<!-- 10月6日　ログイン作成（テンプレ） -->
-<?php
+            <!-- 10月6日　ログイン作成（テンプレ） -->
+            <?php
 
-    try
-    {
-    require_once('../common/common.php');
+            try {
+                require_once('../common/common.php');
 
-    $post=sanitize($_POST);
-    $email_mail=$post['mail'];
-    $password_pass=$post['pass'];
+                $post = sanitize($_POST);
+                $email_mail = $post['mail'];
+                $password_pass = $post['pass'];
 
-    $dsn='mysql:dbname=shop;host=localhost:3307;charset=utf8';
-    $user='root';
-    $password='';
-    $dbh=new PDO($dsn,$user,$password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                $dsn = 'mysql:dbname=shop;host=localhost:3307;charset=utf8';
+                $user = 'root';
+                $password = '';
+                $dbh = new PDO($dsn, $user, $password);
+                $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql='SELECT id,password,email FROM user_deta WHERE email=?';
-    $stmt=$dbh->prepare($sql);
-    $data[]=$email_mail;
-    $stmt->execute($data);
+                $sql = 'SELECT id,password,email FROM user_deta WHERE email=?';
+                $stmt = $dbh->prepare($sql);
+                $data[] = $email_mail;
+                $stmt->execute($data);
 
-    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-    $db_pass=$rec['password'];
-    if(!password_verify($password_pass,$db_pass))
-    {
-    
-    print'パスワードが間違っています。';
-    
-    }
-    else 
-    {
-        header('Location:top.php');
-    }
+                $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+                $db_pass = $rec['password'];
+                if (!password_verify($password_pass, $db_pass)) {
 
-    $dbh=null;
+                    print 'パスワードが間違っています。';
+                } else {
+                    echo '
+                            <script type="text/javascript">
+                            setTimeout("redirect()", 0);
+                            function redirect() {
+                            location.href="top.php";
+                            }
+                            </script>';
+                    exit;
+                }
 
-    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    catch(Exception $e){
-    print'ただいま障害のより大変ご迷惑をお掛けしております。';
-    echo $e->getMessage();
-    exit();
-    }
+                $dbh = null;
 
-?>
-<br />
-<a href = "login.php">ログインへ戻る</a>
-</body>
+                $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                print 'ただいま障害のより大変ご迷惑をお掛けしております。';
+                echo $e->getMessage();
+                exit();
+            }
+
+            ?>
+
+            <br />
+            <a href="login.php">ログインへ戻る</a>
+        </body>
+
 </html>
 
 
 <!-- ページ最下部フッター -->
-    <footer>
-        <div class=footer>
-            <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
-            <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
-            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>
+<footer>
+    <div class=footer1>
+        <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
+        <span class="footer-span"><a href="help.php">お問い合わせ</a></span>
+        <span class="footer-span"><a href=about.php>このサイトについて </a> </span> </div>
+</footer>
+</body>
+
+</html>

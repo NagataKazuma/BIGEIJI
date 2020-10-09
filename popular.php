@@ -3,7 +3,7 @@
 
 <head>
     <!-- サイトタイトル -->
-    <title>近くの映画館</title>
+    <title>定番の映画</title>
     <!-- 規定値 -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,11 +15,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <!-- googleフォントを利用するための参照URL -->
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700 rel=" stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple rel=" stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Teko rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC rel=" stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand rel=" stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital@1&display=swap" rel="stylesheet">
+
 </head>
+<!-- 表示内容 -->
 
 <body>
     <div class="wrapper">
@@ -85,36 +89,60 @@
             <li><a href="login.php">Login</a>
             </li>
         </ul>
-        <div class="helpcon">
-            <div class="java-text">※下記マップはJavaScriptを使用しています。<a href="https://java.com/ja/download/">表示されない方はこちら</a></div>
-            <div class="map"><iframe src="" id="ifr" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
-            <script>
-                function success(pos) {
-                    const lat = pos.coords.latitude;
-                    const lng = pos.coords.longitude;
-                    const accuracy = pos.coords.accuracy;
-                    const aida = ',';
-                    $('loc').text(`${lng}${aida}${lat}`);
-                    $('#accuracy').text(accuracy);
-                    let address = 'https://maps.google.co.jp/maps?output=embed&q=映画館&' + lat + aida + lng + ',13z';
-                    document.getElementById("ifr").src = address;
-
+        <!-- ヘッダー画像実装予定 -->
+        <!-- <div class="header-bg"></div> -->
+        <div class="container">
+            <!-- トップテキスト -->
+            <div class=top_text>定番の映画</div>
+            <!-- TMDBapiを投げてレスポンスを描写 -->
+            <?php
+            $apikey = "3791fa354758148d1190e3e0af17612d"; //TMDbのAPIキー
+            //順位を表記するときの初期値
+            $count = 0;
+            $juni = '位:';
+            // toplistのURLにjsonを要求
+            $top_list = file_get_contents("https://api.themoviedb.org/3/movie/popular?api_key=" . $apikey . "&language=ja&page=1&region=JP");
+            $movieTop = json_decode($top_list, true);
+            // jsonをデコード後results内の情報を要素数繰り返し
+            foreach ($movieTop['results'] as $record) {
+                $title = $record['title'];
+                // $movie_id = $record['id'];
+                // $movie_Synopsis_url = file_get_contents("https://api.themoviedb.org/3/movie/".$movie_id."?"."api_key=".$apikey."&language=ja");
+                // $movie_Synopsis = json_decode($movie_Synopsis_url, true);
+                // $overview = $movie_Synopsis['overview'];
+                $poster_path = $record['poster_path'];
+                $img = "https://image.tmdb.org/t/p/w300_and_h450_bestv2" . $poster_path;
+                $img_get = file_get_contents($img);
+                $enc_img = base64_encode($img_get);
+                $imginfo = getimagesize('data:application/octet-stream;base64,' . $enc_img);
+                $overview = $record['overview'];
+                //あらすじが未登録の場合
+                if (empty($overview)) {
+                    $overview = "あらすじがまだ登録されていません　申し訳ございません😢";
                 }
+                $count += 1;
+                $count2 = "'.$count.'";
+                $none2 = "'none'";
+                $block2 = "'block'";
+                $arasuji = "あらすじを表示▼";
+                //ストリーミングサイトのURL
+                $netflixurl = "https://www.netflix.com/search?q=$title";
+                $youtubeurl = "https://www.youtube.com/results?search_query=$title";
+                $amazonurl = "https://www.amazon.co.jp/s?k=$title&i=instant-video";
+                //tmdbのデータから情報を表示
 
-                function fail(pos) {
-                    alert('位置情報の取得に失敗しました。エラーコード：');
-                }
-
-                navigator.geolocation.getCurrentPosition(success, fail);
-            </script>
-
-            <body>
-
-                <br /><br /><br />
-
+                echo '<div class="example">  <img src="data:' . $imginfo['mime'] . ';base64,' . $enc_img . '">';
+                echo '<p>' .  $title .  '</p>';
+                echo '<a href="' . $netflixurl . '"><span class="span-Netflix">Netflix</span></a><a href="' . $youtubeurl . '"><span class="span-Youtube">YouTube</span></a><a href="' . $amazonurl . '"><span class="span-Amazon">AmzonPrime</span></a>';
+                echo '<div onclick="obj=document.getElementById(' . $count2 . ').style; obj.display=(obj.display==' . $none2 . ')?' . $block2 . ':' . $none2 . ';">
+                <a style="cursor:pointer;"><div class="arasuji-color">' . $arasuji . '</div></a></div>
+                <div id=' . $count2 . ' style="display:none;clear:both;"><p>' . $overview . '</div></div>';
+            }
+            ?>
 
         </div>
-        <div class="push"></div>
+    </div>
+    <div class="push"></div>
     </div>
     <!-- ページ最下部フッター -->
     <br />

@@ -10,6 +10,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- ローディング画面実装jsリンク -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/tinynav.min.js"></script>
     <!-- CSSリンク -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -53,43 +54,60 @@
                 jQuery('#loader-bg').hide();
             });
         </script>
+        <script type="text/javascript">
+            $(function() {
+                $("#menu").tinyNav();
+            });
+        </script>
         <!-- ページ上部のリスト -->
-        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
+        <div class="title-font"><a href="top.php">
                 <img src="img/icon2.png">
             </a></div>
         <ul id="menu">
-            <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="http://localhost/sotuken/eigakan.php#">cinema</a></li>
+            <li><a href="#">Search▼</a>
+                <ul>
+                    <li><a href="movie_search.php">映画を探す</a></li>
+                    <li><a href="popular.php">定番映画を探す</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Cinema▼</a>
+                <ul>
+                    <li><a href="eigakan.php">近くの映画館</a></li>
+                    <li><a href="nowplay.php">上映中の映画</a></li>
+                </ul>
+            </li>
             <li><a href="#">various▼</a>
                 <ul>
                     <li><a href="#">お気に入り映画</a></li>
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="http://localhost/sotuken/login.php">Login</a>
+            <li><a href="login.php">Login</a>
             </li>
         </ul>
 
         <body>
-
-<!-- 10月6日　ログイン作成（テンプレ） -->
-    <br />
-    <br />
-    会員ログイン<br />
-    <form method = "post" action = "member_login_check.php">
-    メールアドレス<br />
-    <input type ="email" name = "mail" style="width:300px"><br />
-    パスワード<br />
-     <input type ="password" name = "pass" style="width:300px"><br />
-    <br />
-    <input type = "submit" value = "ログイン">
-    <a href = "register.php">新規登録はこちら</a>
-    </form>
-
+            <!-- 10月6日　ログイン作成（テンプレ） -->
             
- <!-- ページ最下部フッター -->
-    <footer>
-        <div class=footer>
-            <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
-            <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
-            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>
+            <div class="log-set">
+                <div class=top_text>会員ログイン</div>
+                <form method="post" action="member_login_check.php">
+                    メールアドレス<br />
+                    <input type="email" name="mail" style="width:300px"><br />
+                    パスワード<br />
+                    <input type="password" name="pass" style="width:300px"><br />
+                    <br />
+                    <input type="submit" value="ログイン">
+                    <a href="register.php">新規登録はこちら</a>
+                </form>
+            </div>
+            <!-- ページ最下部フッター -->
+            <footer>
+                <div class=footer1>
+                    <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
+                    <span class="footer-span"><a href="help.php">お問い合わせ</a></span>
+                    <span class="footer-span"><a href="about.php">このサイトについて </a> </span> </div>
+            </footer>
+        </body>
+
+</html>

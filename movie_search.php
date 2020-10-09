@@ -75,19 +75,29 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
             });
         </script>
         <!-- ページ上部のリスト -->
-        <div class="title-font"><a href="http://localhost/sotuken/top.php?movie_title">
+        <div class="title-font"><a href="top.php?movie_title">
                 <img src="img/icon2.png">
             </a></div>
         <ul id="menu">
-            <li><a href="http://localhost/sotuken/movie_search.php?movie_title#">Search</a></li>
-            <li><a href="http://localhost/sotuken/eigakan.php#">Cinema</a></li>
+            <li><a href="#">Search▼</a>
+                <ul>
+                    <li><a href="movie_search.php?movie_title#">映画を探す</a></li>
+                    <li><a href="popular.php">定番映画を探す</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Cinema▼</a>
+                <ul>
+                    <li><a href="eigakan.php">近くの映画館</a></li>
+                    <li><a href="nowplay.php">上映中の映画</a></li>
+                </ul>
+            </li>
             <li><a href="#">various▼</a>
                 <ul>
                     <li><a href="#">お気に入り映画</a></li>
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="http://localhost/sotuken/login.php">Login</a>
+            <li><a href="login.php">Login</a>
             </li>
         </ul>
         <div class="container">
@@ -183,5 +193,9 @@ if (array_key_exists('movie_title', $_GET)) {
     <footer>
         <div class=footer>
             <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
-            <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
-            <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>
+            <span class="footer-span"><a href="help.php">お問い合わせ</a></span>
+            <span class="footer-span"><a href=about.php>このサイトについて </a> </span> </div>
+    </footer>
+</body>
+
+</html>
