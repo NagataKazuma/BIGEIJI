@@ -19,9 +19,27 @@
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand rel=" stylesheet">
+    <style type="text/css">
+        input[type="text"] {
+            background-color: transparent;
+            border: solid;
+            outline: none;
+            border-left: transparent;
+            border-right: transparent;
+            border-top: transparent;
+        }
+
+        input[type="text"]:hover {
+            border: solid#b97a56;
+            border-left: transparent;
+            border-right: transparent;
+            border-top: transparent;
+            transition: .3s;
+        }
+    </style>
 </head>
 
-<body>
+<body background="img/canele.jpg">
     <div class="wrapper">
         <!-- ページトップに戻す描写 -->
         <div id="page_top"><a href="#"></a></div>
@@ -82,32 +100,62 @@
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="login.php">Login</a>
+            <li><a href="#">Login▼</a>
+                <ul>
+                    <li class="test100"><a href="login.php">ログイン</a></li>
+                    <li class="test100"><a href="register.php">新規登録</a></li>
+                </ul>
             </li>
         </ul>
-
-        <body>
-            <!-- 10月6日　ログイン作成（テンプレ） -->
-            
-            <div class="log-set">
-                <div class=top_text>会員ログイン</div>
-                <form method="post" action="member_login_check.php">
-                    メールアドレス<br />
-                    <input type="email" name="mail" style="width:300px"><br />
-                    パスワード<br />
-                    <input type="password" name="pass" style="width:300px"><br />
+        <!-- 10月6日　ログイン作成（テンプレ） -->
+        <div class="test50">
+            <div class=top_logtext>ログイン</div>
+            <br />
+            <form method="post" action="member_login_check.php">
+                <div class="log-set">
+                    <div class="mail icon"></div>メールアドレス
+                </div>
+                <input type="email" name="mail" style="width:300px" placeholder="E-Mail address" required><br />
+                <div class="log-set">
                     <br />
-                    <input type="submit" value="ログイン">
-                    <a href="register.php">新規登録はこちら</a>
-                </form>
-            </div>
-            <!-- ページ最下部フッター -->
-            <footer>
-                <div class=footer1>
-                    <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
-                    <span class="footer-span"><a href="help.php">お問い合わせ</a></span>
-                    <span class="footer-span"><a href="about.php">このサイトについて </a> </span> </div>
-            </footer>
-        </body>
+                    <div class="key2 icon"></div>パスワード
+                </div>
+                <div class="toggle">
+                    <input type="password" name="pass" style="width:300px" placeholder="Password" class="field js-password" id="password2" required>
+                    <label id="label22" class="btn-label js-password-label1" for="eye"><i class="fas fa-eye"></i></label>
+                    <div class="btn">
+                        <input class="btn-input js-password-toggle" id="eye" type="checkbox">
+                    </div>
+                </div>
+                <br /><br />
+                <input type="submit" class="btn-flat-border" value="ログイン">
+                <br />初めてのご利用ですか?<a href="register.php">
+                    <div class="log-set">新規登録はこちら</div>
+                </a>
+                <script>
+                    const passwordToggle = document.querySelector('.js-password-toggle');
+                    passwordToggle.addEventListener('change', function() {
+                        const password = document.querySelector('.js-password'),
+                            passwordLabel = document.querySelector('.js-password-label1');
+                        if (password.type === 'password') {
+                            password.type = 'text';
+                            passwordLabel.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                        } else {
+                            password.type = 'password';
+                            passwordLabel.innerHTML = '<i class="fas fa-eye"></i>';
+                        }
+                        password.focus();
+                    });
+                </script>
+            </form>
+        </div>
+        <!-- ページ最下部フッター -->
+        <footer>
+            <div class=footer1>
+                <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
+                <span class="footer-span"><a href="help.php">お問い合わせ</a></span>
+                <span class="footer-span"><a href="about.php">このサイトについて </a> </span> </div>
+        </footer>
+</body>
 
 </html>

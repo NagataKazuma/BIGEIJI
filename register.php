@@ -11,6 +11,7 @@
     <!-- ローディング画面実装jsリンク -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/tinynav.min.js"></script>
+    <script type="text/javascript" src="js/zxcvbn.js"></script>
     <!-- CSSリンク -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -19,9 +20,27 @@
     <link href="https://fonts.googleapis.com/css?family=Homemade+Apple rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC rel=" stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand rel=" stylesheet">
+    <style type="text/css">
+        input[type="text"] {
+            background-color: transparent;
+            border: solid;
+            outline: none;
+            border-left: transparent;
+            border-right: transparent;
+            border-top: transparent;
+        }
+
+        input[type="text"]:hover {
+            border: solid#b97a56;
+            border-left: transparent;
+            border-right: transparent;
+            border-top: transparent;
+            transition: .3s;
+        }
+    </style>
 </head>
 
-<body>
+<body background="img/canele.jpg">
     <div class="wrapper">
         <!-- ページトップに戻す描写 -->
         <div id="page_top"><a href="#"></a></div>
@@ -82,30 +101,117 @@
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="login.php">Login</a>
+            <li><a href="#">Login▼</a>
+                <ul>
+                    <li class="test100"><a href="login.php">ログイン</a></li>
+                    <li class="test100"><a href="register.php">新規登録</a></li>
+                </ul>
             </li>
         </ul>
+        <div class="test50">
 
-        <body>
-
+            <div class=top_logtext>アカウントを作成</div>
             <!-- 10月6日　ログイン作成（テンプレ） -->
             <br />
-            <form method="post" action="login_add_check.php">
-                メールアドレスを入力してください<br />
-                <input type="email" name="mail" style="width:300px"><br />
-                パスワードを入力してください<br />
-                <input type="password" name="pass" style="width:300px"><br />
-                パスワードをもう一度入力してください<br />
-                <input type="password" name="pass2" style="width:300px"><br />
+            <form method="post" action="login_add_check.php" onsubmit="return passcheck()">
+                <div class="log-set">
+                    <div class="mail icon"></div>メールアドレス
+                </div>
+                <input type="email" name="mail" id="mail" style="width:300px" placeholder="E-Mail address" required><br />
+                <div class="log-set">
+                    <br />
+                    <div class="key2 icon"></div>パスワード
+                </div>
+                <div class="toggle">
+                    <input type="password" class="field js-password" id="password" onInput="func1()" name="pass" style="width:300px" placeholder="半角英数字８文字と強度レベル３以上" required>
+                    <label id="label22" class="btn-label js-password-label" for="eye"><i class="fas fa-eye"></i></label>
+                    <div class="btn">
+                        <input class="btn-input js-password-toggle" id="eye" type="checkbox">
+                    </div>
+                </div>
+                <script language="javascript" type="text/javascript">
+                    function func1() {
+                        var input_message = document.getElementById("password").value;
+                        var zxc = zxcvbn(input_message);
+                        this.score = zxc.score;
+                        var test = this.score;
+                        document.getElementById("output_message").innerHTML = "強度レベル:" + test;
+                        if (test == "0") {
+                            let p = document.getElementById('output_message');
+                            p.className = 'output-0';
+                        }
+
+                        if (test == "1") {
+                            let p = document.getElementById('output_message');
+                            p.className = 'output-1';
+                        }
+                        if (test == "2") {
+                            let p = document.getElementById('output_message');
+                            p.className = 'output-2';
+                        }
+                        if (test == "3") {
+                            let p = document.getElementById('output_message');
+                            p.className = 'output-3';
+                        }
+                        if (test == "4") {
+                            let p = document.getElementById('output_message');
+                            p.className = 'output-4';
+                        }
+                    }
+
+                    function passcheck() {
+                        const pass1 = document.getElementById('password').value;
+                        const pass2 = document.getElementById('password2').value;
+                        const mailadd = document.getElementById('mail').value;
+                        const strlen = pass1.length
+                        const result_int = pass1.match(/\d{1,20}/); //matchではtrueのときnullが返る"/d"が数字
+                        const result_str = pass1.match(/\w{1,20}/); //"/w"が文字str
+                        const zxc = zxcvbn(pass1);
+                        var score = zxc.score;
+                        if (result_int != null && result_str != null && pass1 == pass2 && strlen >= "8" && score >= "3") {
+
+                            ; //条件を満たした時何もしない【成功】、この場合パスワード1とパスワード2が同じであり文字数が8以上かつ半角英数字どちらも含む時、zxcvbnでスコア3以上
+
+                        } else if (pass1 == mailadd) {
+                            alert("セキュリティ警告※メールアドレスをパスワードに使わないでください");
+                            return false;
+                        } else {
+                            alert("パスワードの条件が満たされていない、また2つのパスワードが異なっています");
+                            return false;
+                        }
+                    }
+                </script>
+                <div class="output-0" id="output_message">強度レベル:0</div>
+                <div class="log-set">
+                    <br />
+                    <div class="key icon"></div>もう一度パスワードを入力してください。
+                </div>
+                <input type="password" class="field js-password" id="password2" name="pass2" style="width:300px" placeholder="確認用" required><br />
                 <br />
-                <input type="button" onclick="history.back()" value="戻る">
-                <input type="submit" value="OK">
+                <input type="submit" class="btn-flat-border" value="アカウントを作成する">
+                <br />アカウントをお持ちですか?<a href=" login.php">
+                    <div class="log-set">ログインはこちら</div>
+                </a>
             </form>
-
-
-            <!-- ページ最下部フッター -->
-            <footer>
-                <div class=footer1>
-                    <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
-                    <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
-                    <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>
+            <script>
+                const passwordToggle = document.querySelector('.js-password-toggle');
+                passwordToggle.addEventListener('change', function() {
+                    const password = document.querySelector('.js-password'),
+                        passwordLabel = document.querySelector('.js-password-label');
+                    if (password.type === 'password') {
+                        password.type = 'text';
+                        passwordLabel.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                    } else {
+                        password.type = 'password';
+                        passwordLabel.innerHTML = '<i class="fas fa-eye"></i>';
+                    }
+                    password.focus();
+                });
+            </script>
+        </div>
+        <!-- ページ最下部フッター -->
+        <footer>
+            <div class=footer1>
+                <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
+                <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
+                <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>

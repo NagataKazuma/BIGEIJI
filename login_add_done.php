@@ -82,7 +82,11 @@
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="login.php">Login</a>
+            <li><a href="#">Login▼</a>
+                <ul>
+                    <li class="test100"><a href="login.php">ログイン</a></li>
+                    <li class="test100"><a href="register.php">新規登録</a></li>
+                </ul>
             </li>
         </ul>
         <!-- 10月6日　ログイン認証 -->
@@ -112,9 +116,22 @@
 
             print $email_mail;
             print 'を追加しました。<br />';
+            echo '<div class=already>自動でログイン画面に移行します。</div>
+            <script type="text/javascript">
+            setTimeout("redirect()", 1000);
+            function redirect() {
+            location.href="login.php";
+            }
+            </script>';
         } catch (Exception $e) {
-            print 'ただいま障害により大変ご迷惑をお掛けしております。';
-            echo '捕捉した例外: ', $e->getMessage(), "\n";
+            echo '<div class=already>入力されたメールアドレスは既に登録済みです。</div>';
+            echo '<div class=already>自動で会員登録画面に戻ります。</div>
+            <script type="text/javascript">
+            setTimeout("redirect()", 1000);
+            function redirect() {
+            location.href="register.php";
+            }
+            </script>';
             exit();
         }
 

@@ -3,7 +3,7 @@
 
 <head>
     <!-- サイトタイトル -->
-    <title>近くの映画館</title>
+    <title>新規会員登録</title>
     <!-- 規定値 -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand rel=" stylesheet">
 </head>
 
-<body background="img/canele.jpg">
+<body>
     <div class="wrapper">
         <!-- ページトップに戻す描写 -->
         <div id="page_top"><a href="#"></a></div>
@@ -66,7 +66,7 @@
         <ul id="menu">
             <li><a href="#">Search▼</a>
                 <ul>
-                    <li><a href="movie_search.php?movie_title#">映画を探す</a></li>
+                    <li><a href="movie_search.php">映画を探す</a></li>
                     <li><a href="popular.php">定番映画を探す</a></li>
                 </ul>
             </li>
@@ -89,45 +89,50 @@
                 </ul>
             </li>
         </ul>
-        <div class="helpcon">
-            <div class="java-text">※下記マップはJavaScriptを使用しています。<a href="https://java.com/ja/download/">表示されない方はこちら</a></div>
-            <div class="map"><iframe src="" id="ifr" width="1000" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
+
+        <body>
+            <div class="log-top">
+                <div class=top_text>アカウント新規登録</div>
+            </div>
+            <!-- 10月6日　ログイン作成（テンプレ） -->
+            <br />
+            <form method="post" action="login_add_check.php">
+                <div class="log-set">メールアドレス</div>
+                <input type="email" name="mail" style="width:300px" placeholder="E-Mail address" required><br />
+                <div class="log-set">パスワード</div>
+                <div class="toggle">
+                    <input type="password" class="field js-password" id="password2" name="pass" style="width:300px" placeholder="英字と数字の両方を含めて8～20字" required>
+                    <label class="btn-label js-password-label" for="eye"><i class="fas fa-eye"></i></label>
+                    <div class="btn">
+                        <input class="btn-input js-password-toggle" id="eye" type="checkbox">
+                    </div>
+                </div>
+                <div class="log-set">パスワード【確認用】</div>
+                <input type="password" class="field js-password" id="password2" name="pass2" style="width:300px" placeholder="確認用" required><br />
+                <br />
+                <input type="button" onclick="history.back()" value="戻る">
+                <input type="submit" value="OK">
+                <a href="login.php">ログインはこちら</a>
+            </form>
             <script>
-                function success(pos) {
-                    const lat = pos.coords.latitude;
-                    const lng = pos.coords.longitude;
-                    const accuracy = pos.coords.accuracy;
-                    const aida = ',';
-                    $('loc').text(`${lng}${aida}${lat}`);
-                    $('#accuracy').text(accuracy);
-                    let address = 'https://maps.google.co.jp/maps?output=embed&q=映画館&' + lat + aida + lng + ',13z';
-                    document.getElementById("ifr").src = address;
-
-                }
-
-                function fail(pos) {
-                    alert('位置情報の取得に失敗しました。エラーコード：');
-                }
-
-                navigator.geolocation.getCurrentPosition(success, fail);
+                const passwordToggle = document.querySelector('.js-password-toggle');
+                passwordToggle.addEventListener('change', function() {
+                    const password = document.querySelector('.js-password'),
+                        passwordLabel = document.querySelector('.js-password-label');
+                    if (password.type === 'password') {
+                        password.type = 'text';
+                        passwordLabel.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                    } else {
+                        password.type = 'password';
+                        passwordLabel.innerHTML = '<i class="fas fa-eye"></i>';
+                    }
+                    password.focus();
+                });
             </script>
 
-            <body>
-
-                <br /><br /><br />
-
-
-        </div>
-        <div class="push"></div>
-    </div>
-    <!-- ページ最下部フッター -->
-    <br />
-    <footer>
-        <div class=footer>
-            <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
-            <span class="footer-span"><a href="help.php">お問い合わせ</a></span>
-            <span class="footer-span"><a href=about.php>このサイトについて </a> </span> </div>
-    </footer>
-</body>
-
-</html>
+            <!-- ページ最下部フッター -->
+            <footer>
+                <div class=footer1>
+                    <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
+                    <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
+                    <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>

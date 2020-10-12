@@ -82,60 +82,68 @@
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="login.php">Login</a>
+            <li><a href="#">Login▼</a>
+                <ul>
+                    <li class="test100"><a href="login.php">ログイン</a></li>
+                    <li class="test100"><a href="register.php">新規登録</a></li>
+                </ul>
             </li>
         </ul>
 
         <!-- 10月6日　ログイン認証 -->
+        <div class="log-set">
+            <?php
 
-        <body>
-            <div class="log-set">
-                <?php
+            require_once('../common/common.php');
 
-                require_once('../common/common.php');
+            $post = sanitize($_POST);
+            $email_mail = $post['mail'];
+            $password_pass = $post['pass'];
+            $password_pass2 = $post['pass2'];
 
-                $post = sanitize($_POST);
-                $email_mail = $post['mail'];
-                $password_pass = $post['pass'];
-                $password_pass2 = $post['pass2'];
+            // if (preg_match("/^[A-Z]\w{7,14}$/", $password_pass)) {
+            if (preg_match('/\A(?=.*?[a-z])(?=.*?\d)[!-~]{8,20}+\z/i', $password_pass)) { //移動前に条件を含むはずだが保険として
 
-                if ($email_mail == '') {
-                    print 'メールアドレスが入力してください。<br />';
+                if ($password_pass != $password_pass2) {
+                    echo '<div class=already>パスワードが一致しません。</div><br />';
+                    echo '<br/>
+                            自動でログインページに戻ります。
+                            <script type="text/javascript">
+                            setTimeout("redirect()", 1000);
+                            function redirect() {
+                            location.href="register.php";
+                            }
+                            </script>';
+                }
+
+                if ($email_mail == '' || $password_pass == '' || $password_pass != $password_pass2) {
+                    print '<form>';
+                    print '<input type = "button" onclick = "history.back()"value="戻る">';
+                    print '</form>';
                 } else {
-                    print 'アドレス:';
-                    print $email_mail;
+                    $password_pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+                    echo '<div class=already>メールアドレス:' . $email_mail . 'で登録します。</div>';
+                    print '<form method ="post" action ="login_add_done.php">';
+                    print '<input type = "hidden" name = "mail" value = "' . $email_mail . '">';
+                    print '<input type = "hidden" name = "pass" value = "' . $password_pass . '">';
                     print '<br />';
+                    echo '<div class=button><input type = "button" onclick = "history.back()" value = "戻る"><input type = "submit" value = "OK"></div>';
+                    print '</form.';
                 }
-
-                if ($password_pass == '') {
-                    print 'パスワードが入力してください。<br />';
-                }
-                if (preg_match("/^[A-Z]\w{7,14}$/", $password_pass)) {
-
-                    if ($password_pass != $password_pass2) {
-                        print 'パスワードが一致しません。<br />';
-                    }
-
-                    if ($email_mail == '' || $password_pass == '' || $password_pass != $password_pass2) {
-                        print '<form>';
-                        print '<input type = "button" onclick = "history.back()"value="戻る">';
-                        print '</form>';
-                    } else {
-                        $password_pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-                        print '<form method ="post" action ="login_add_done.php">';
-                        print '<input type = "hidden" name = "mail" value = "' . $email_mail . '">';
-                        print '<input type = "hidden" name = "pass" value = "' . $password_pass . '">';
-                        print '<br />';
-                        print '<input type = "button" onclick = "history.back()" value = "戻る">';
-                        print '<input type = "submit" value = "OK">';
-                        print '</form.';
-                    }
-                } else {
-                    print "<p>パスワードが不適切です。</p>";
-                }
-                ?>
-            </div>
-        </body>
+            } else {
+                echo '<div class=already>パスワードが不適切です。</div><br />';
+                echo '<br/>
+                            自動でログインページに戻ります。
+                            <script type="text/javascript">
+                            setTimeout("redirect()", 1000);
+                            function redirect() {
+                            location.href="register.php";
+                            }
+                            </script>';
+            }
+            ?>
+        </div>
+</body>
 
 </html>
 

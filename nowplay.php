@@ -86,7 +86,11 @@
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="login.php">Login</a>
+            <li><a href="#">Login▼</a>
+                <ul>
+                    <li class="test100"><a href="login.php">ログイン</a></li>
+                    <li class="test100"><a href="register.php">新規登録</a></li>
+                </ul>
             </li>
         </ul>
         <!-- ヘッダー画像実装予定 -->

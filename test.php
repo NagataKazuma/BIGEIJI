@@ -3,7 +3,7 @@
 
 <head>
     <!-- サイトタイトル -->
-    <title>近くの映画館</title>
+    <title>新規会員登録</title>
     <!-- 規定値 -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand rel=" stylesheet">
 </head>
 
-<body background="img/canele.jpg">
+<body>
     <div class="wrapper">
         <!-- ページトップに戻す描写 -->
         <div id="page_top"><a href="#"></a></div>
@@ -66,7 +66,7 @@
         <ul id="menu">
             <li><a href="#">Search▼</a>
                 <ul>
-                    <li><a href="movie_search.php?movie_title#">映画を探す</a></li>
+                    <li><a href="movie_search.php">映画を探す</a></li>
                     <li><a href="popular.php">定番映画を探す</a></li>
                 </ul>
             </li>
@@ -89,45 +89,25 @@
                 </ul>
             </li>
         </ul>
-        <div class="helpcon">
-            <div class="java-text">※下記マップはJavaScriptを使用しています。<a href="https://java.com/ja/download/">表示されない方はこちら</a></div>
-            <div class="map"><iframe src="" id="ifr" width="1000" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
+
+        <body>
+            <input type="password" class="field" id="password" value="hogehoge">
+            <input type="checkbox" id="password-check">
+            パスワードを表示する
             <script>
-                function success(pos) {
-                    const lat = pos.coords.latitude;
-                    const lng = pos.coords.longitude;
-                    const accuracy = pos.coords.accuracy;
-                    const aida = ',';
-                    $('loc').text(`${lng}${aida}${lat}`);
-                    $('#accuracy').text(accuracy);
-                    let address = 'https://maps.google.co.jp/maps?output=embed&q=映画館&' + lat + aida + lng + ',13z';
-                    document.getElementById("ifr").src = address;
-
-                }
-
-                function fail(pos) {
-                    alert('位置情報の取得に失敗しました。エラーコード：');
-                }
-
-                navigator.geolocation.getCurrentPosition(success, fail);
+                const pwd = document.getElementById('password');
+                const pwdCheck = document.getElementById('password-check');
+                pwdCheck.addEventListener('change', function() {
+                    if (pwdCheck.checked) {
+                        pwd.setAttribute('type', 'text');
+                    } else {
+                        pwd.setAttribute('type', 'password');
+                    }
+                }, false);
             </script>
-
-            <body>
-
-                <br /><br /><br />
-
-
-        </div>
-        <div class="push"></div>
-    </div>
-    <!-- ページ最下部フッター -->
-    <br />
-    <footer>
-        <div class=footer>
-            <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
-            <span class="footer-span"><a href="help.php">お問い合わせ</a></span>
-            <span class="footer-span"><a href=about.php>このサイトについて </a> </span> </div>
-    </footer>
-</body>
-
-</html>
+            <!-- ページ最下部フッター -->
+            <footer>
+                <div class=footer1>
+                    <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
+                    <span class="footer-span"><a href="http://localhost/sotuken/help.php">お問い合わせ</a></span>
+                    <span class="footer-span"><a href=http://localhost/sotuken/about.php>このサイトについて </a> </span> </div> </footer> </body> </html>

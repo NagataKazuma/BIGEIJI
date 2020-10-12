@@ -96,8 +96,11 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
                     <li><a href="#">お気に入り映画</a></li>
                     <li><a href="#">掲示板</a></li>
                 </ul>
-            </li>
-            <li><a href="login.php">Login</a>
+            <li><a href="#">Login▼</a>
+                <ul>
+                    <li class="test100"><a href="login.php">ログイン</a></li>
+                    <li class="test100"><a href="register.php">新規登録</a></li>
+                </ul>
             </li>
         </ul>
         <div class="container">
@@ -112,12 +115,14 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
                     <div class="search-box"><input type="text" class="form-control" name="movie_title" id="movie_title" required placeholder="映画のタイトル" value="
 <?php
 if (array_key_exists('movie_title', $_GET)) {
+    $_GET['movie_title'] = htmlspecialchars($_GET['movie_title']); //サニタイジング実装
     echo $_GET['movie_title'];
 }
 
 ?>"></div>
                 </li>
                 </fieldset>
+                <!-- <input type="submit" class="btn-flat-border" value="ログイン"></a> -->
                 <li><button type="submit" class="btn btn-primary">検索</button></li>
             </ul>
             </form>
@@ -185,9 +190,6 @@ if (array_key_exists('movie_title', $_GET)) {
 
             ?>
         </div>
-    </div>
-    <div class="push"></div>
-    </div>
     </div>
     <!-- ページ最下部フッター -->
     <footer>

@@ -54,37 +54,39 @@
                 jQuery('#loader-bg').hide();
             });
         </script>
-        <script type="text/javascript">
-            $(function() {
-                $("#menu").tinyNav();
-            });
-        </script>
         <!-- ページ上部のリスト -->
-        <ul id="menu">
-            <li><a href="#">Search▼</a>
-                <ul>
-                    <li><a href="movie_search.php">映画を探す</a></li>
-                    <li><a href="popular.php">定番映画を探す</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Cinema▼</a>
-                <ul>
-                    <li><a href="eigakan.php">近くの映画館</a></li>
-                    <li><a href="nowplay.php">上映中の映画</a></li>
-                </ul>
-            </li>
-            <li><a href="#">various▼</a>
-                <ul>
-                    <li><a href="#">お気に入り映画</a></li>
-                    <li><a href="#">掲示板</a></li>
-                </ul>
-            </li>
-            <li><a href="login.php">Login</a>
-            </li>
-        </ul>
+
 
         <body>
-
+            <!-- ページ上部のリスト -->
+            <div class="title-font"><a href="top.php?movie_title">
+                    <img src="img/icon2.png">
+                </a></div>
+            <ul id="menu">
+                <li><a href="#">Search▼</a>
+                    <ul>
+                        <li><a href="movie_search.php?movie_title#">映画を探す</a></li>
+                        <li><a href="popular.php">定番映画を探す</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Cinema▼</a>
+                    <ul>
+                        <li><a href="eigakan.php">近くの映画館</a></li>
+                        <li><a href="nowplay.php">上映中の映画</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">various▼</a>
+                    <ul>
+                        <li><a href="#">お気に入り映画</a></li>
+                        <li><a href="#">掲示板</a></li>
+                    </ul>
+                <li><a href="#">Login▼</a>
+                    <ul>
+                        <li class="test100"><a href="login.php">ログイン</a></li>
+                        <li class="test100"><a href="register.php">新規登録</a></li>
+                    </ul>
+                </li>
+            </ul>
             <!-- 10月6日　ログイン作成（テンプレ） -->
             <?php
 
@@ -110,11 +112,20 @@
                 $db_pass = $rec['password'];
                 if (!password_verify($password_pass, $db_pass)) {
 
-                    print 'パスワードが間違っています。';
-                } else {
-                    echo '
+                    echo '<div class=already>メールアドレスまたはパスワードが違います。</div>';
+                    echo '  <br/>
+                            自動でログインページに戻ります。
                             <script type="text/javascript">
-                            setTimeout("redirect()", 0);
+                            setTimeout("redirect()", 1000);
+                            function redirect() {
+                            location.href="login.php";
+                            }
+                            </script>';
+                } else { //ログイン成功後、画面が切り替わる記述[秒数単位ミリ]
+                    echo '  <div class="top_text">ログインに成功しました<br/>
+                            自動でページが切り替わります。</div>
+                            <script type="text/javascript">
+                            setTimeout("redirect()", 1000);
                             function redirect() {
                             location.href="top.php";
                             }
@@ -126,15 +137,13 @@
 
                 $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (Exception $e) {
-                print 'ただいま障害のより大変ご迷惑をお掛けしております。';
-                echo $e->getMessage();
+                print 'ただいま障害により大変ご迷惑をお掛けしております。';
                 exit();
             }
 
             ?>
 
             <br />
-            <a href="login.php">ログインへ戻る</a>
         </body>
 
 </html>

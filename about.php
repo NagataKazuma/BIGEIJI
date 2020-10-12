@@ -241,12 +241,16 @@
                     <div class="floattest"><span class="soft">Group ware</span><span class="soft-name">Discord Slack</span></div>
                 </div>
                 <div class="floatall">
-                    <div class="floattest"><span class="soft">Library</span><span class="soft-name">jQuery</span></div>
+                    <div class="floattest"><span class="soft">CAPTCHA</span><span class="soft-name">reCAPTCHA v3</span></div>
                     <div class="floattest"><span class="soft">WebGIS</span><span class="soft-name">Google Maps</span></div>
                 </div>
                 <div class="floatall">
                     <div class="floattest"><span class="soft">Server</span><span class="soft-name">AWS</span></div>
                     <div class="floattest"><span class="soft">Web Font</span><span class="soft-name">Google Fonts</span></div>
+                </div>
+                <div class="floatall">
+                    <div class="floattest"><span class="soft">Password Strength</span><span class="soft-name">©Dropbox zxcvbn</span></div>
+                    <div class="floattest"><span class="soft">jQuery</span><span class="soft-name">tinynav</span></div>
                 </div>
                 <br /><br />
                 <div class="fin-text">fin!</div>

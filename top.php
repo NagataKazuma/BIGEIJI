@@ -10,6 +10,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- ローディング画面実装jsリンク -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- レスポンシブ対応jsリンク -->
     <script src="js/tinynav.min.js"></script>
     <!-- CSSリンク -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -58,6 +59,7 @@
                 jQuery('#loader-bg').hide();
             });
         </script>
+        <!-- レスポンシブ対応するためのmenuに対する記述 -->
         <script type="text/javascript">
             $(function() {
                 $("#menu").tinyNav();
@@ -86,7 +88,11 @@
                     <li><a href="#">掲示板</a></li>
                 </ul>
             </li>
-            <li><a href="login.php">Login</a>
+            <li><a href="#">Login▼</a>
+                <ul>
+                    <li class="test100"><a href="login.php">ログイン</a></li>
+                    <li class="test100"><a href="register.php">新規登録</a></li>
+                </ul>
             </li>
         </ul>
         <!-- ヘッダー画像実装予定 -->
@@ -106,10 +112,6 @@
             // jsonをデコード後results内の情報を要素数繰り返し
             foreach ($movieTop['results'] as $record) {
                 $title = $record['title'];
-                // $movie_id = $record['id'];
-                // $movie_Synopsis_url = file_get_contents("https://api.themoviedb.org/3/movie/".$movie_id."?"."api_key=".$apikey."&language=ja");
-                // $movie_Synopsis = json_decode($movie_Synopsis_url, true);
-                // $overview = $movie_Synopsis['overview'];
                 $poster_path = $record['poster_path'];
                 $img = "https://image.tmdb.org/t/p/w300_and_h450_bestv2" . $poster_path;
                 $img_get = file_get_contents($img);
@@ -143,8 +145,6 @@
             ?>
 
         </div>
-    </div>
-    <div class="push"></div>
     </div>
     <!-- ページ最下部フッター -->
     <br />
