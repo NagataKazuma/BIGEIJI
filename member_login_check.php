@@ -77,8 +77,8 @@
                 </li>
                 <li><a href="#">various▼</a>
                     <ul>
-                        <li><a href="#">お気に入り映画</a></li>
-                        <li><a href="#">掲示板</a></li>
+                    <li><a href="favorite.php">お気に入り映画</a></li>
+                    <li><a href="review.php">映画レビュー</a></li>
                     </ul>
                 <li><a href="#">Login▼</a>
                     <ul>
@@ -122,6 +122,9 @@
                             }
                             </script>';
                 } else { //ログイン成功後、画面が切り替わる記述[秒数単位ミリ]
+                    session_start();
+                    $_SESSION['login']=1;
+                    $_SESSION['email_mail']=['mail'];
                     echo '  <div class="top_text">ログインに成功しました<br/>
                             自動でページが切り替わります。</div>
                             <script type="text/javascript">
@@ -130,7 +133,8 @@
                             location.href="top.php";
                             }
                             </script>';
-                    exit;
+                           
+                        exit;
                 }
 
                 $dbh = null;

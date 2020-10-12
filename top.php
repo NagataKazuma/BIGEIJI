@@ -84,8 +84,8 @@
             </li>
             <li><a href="#">various▼</a>
                 <ul>
-                    <li><a href="#">お気に入り映画</a></li>
-                    <li><a href="#">掲示板</a></li>
+                    <li><a href="favorite.php">お気に入り映画</a></li>
+                    <li><a href="review.php">映画レビュー</a></li>
                 </ul>
             </li>
             <li><a href="#">Login▼</a>

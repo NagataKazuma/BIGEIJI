@@ -93,8 +93,8 @@ if (array_key_exists('movie_title', $_GET) && $_GET['movie_title'] != "") {
             </li>
             <li><a href="#">various▼</a>
                 <ul>
-                    <li><a href="#">お気に入り映画</a></li>
-                    <li><a href="#">掲示板</a></li>
+                    <li><a href="favorite.php">お気に入り映画</a></li>
+                    <li><a href="review.php">映画レビュー</a></li>
                 </ul>
             <li><a href="#">Login▼</a>
                 <ul>
