@@ -79,21 +79,24 @@
                 </ul>
             </li>
         </ul>
-
+        <br /><br />
+        <h1>ログアウトしました。</h1>
         <!-- 10月6日　ログイン認証 -->
         <?php
+        ini_set('display_errors', 0);
         session_start();
         $_SESSION = array();
         if (isset($_COOKIE[session_name()]) == true) {
             setcookie(session_name(), '', time() - 42000, '/');
         }
         session_destroy();
+        echo '<script language="javascript" type="text/javascript">
+                    setTimeout("redirect()", 500);
+                    function redirect() {
+                    location.href="top.php";
+                    }</script>';
+        exit();
         ?>
-
-
-        ログアウトしました。<br />
-        <br />
-        <a href="login.php">ログイン画面へ</a>
 
 </body>
 

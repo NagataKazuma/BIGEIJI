@@ -109,6 +109,22 @@
         </ul>
         <!-- 10月6日　ログイン作成（テンプレ） -->
         <div class="test50">
+            <?php
+            ini_set('display_errors', 0);
+            session_start();
+            if (isset($_SESSION['login']) == false) {
+                    // print 'ログインしてね。<br />';
+                    // print '<a href="login.php">ログイン画面へ</a>';
+                ;
+            } else {
+                echo '<script language="javascript" type="text/javascript">alert("ログイン中です。");';
+                echo 'setTimeout("redirect()", 10);
+                    function redirect() {
+                    location.href="top.php";
+                    }</script>';
+                exit();
+            }
+            ?>
             <div class=top_logtext>ログイン</div>
             <br />
             <form method="post" action="member_login_check.php">

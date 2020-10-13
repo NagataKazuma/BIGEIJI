@@ -90,6 +90,19 @@
             </li>
         </ul>
         <div class="helpcon">
+            <?php
+            ini_set('display_errors', 0);
+            session_start();
+            if (isset($_SESSION['login']) == false) {
+                    // print 'ログインしてね。<br />';
+                    // print '<a href="login.php">ログイン画面へ</a>';
+                ;
+            } else {
+                $user_id=$_SESSION['email_mail'];
+                echo '<div class="loging">'.$user_id.'でログイン中:';
+                echo '<a href="logout.php">ログアウト</a></div>';
+            }
+            ?>
             <div class="java-text">※下記マップはJavaScriptを使用しています。<a href="https://java.com/ja/download/">表示されない方はこちら</a></div>
             <div class="map"><iframe src="" id="ifr" width="1000" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
             <script>

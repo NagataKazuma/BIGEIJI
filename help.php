@@ -91,6 +91,22 @@
         </ul>
 
         <body>
+        <div class="container">
+            <?php
+            ini_set('display_errors', 0);
+            session_start();
+            if (isset($_SESSION['login']) == false) {
+                    // print 'ログインしてね。<br />';
+                    // print '<a href="login.php">ログイン画面へ</a>';
+                ;
+            } else {
+                $user_id=$_SESSION['email_mail'];
+                echo '<div class="loging">'.$user_id.'でログイン中:';
+                echo '<a href="logout.php">ログアウト</a></div>';
+            }
+            ?>
+
+            
             <div class=help_text-top>
                 お問い合わせフォーム<br />
             </div>

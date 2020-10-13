@@ -1,18 +1,3 @@
-<?php
-    session_start();
-    if(isset($_SESSION['login'])==false)
-        {
-            print'ログインしてね。<br />';
-            print'<a href="login.php">ログイン画面へ</a>';
-            exit();
-        }
-else
-{
-    print'ログイン中 ';
-    print'<a href="logout.php">ログアウト</a><br />';
-}
-
-?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -111,6 +96,27 @@ else
         <!-- ヘッダー画像実装予定 -->
         <!-- <div class="header-bg"></div> -->
         <div class="container">
+            <?php
+            //ini_set('display_errors', 0);
+            if(!isset($_SESSION)){
+                session_start();
+                }
+            if (isset($_SESSION['login']) == false) {
+                // print 'ログインしてね。<br />';
+                // print '<a href="login.php">ログイン画面へ</a>';
+                echo '<script language="javascript" type="text/javascript">alert("会員限定機能です。ログインしてください。");';
+                echo 'setTimeout("redirect()", 10);
+                function redirect() {
+                location.href="login.php";
+                }</script>';
+                exit();
+            } else {
+                $user_id=$_SESSION['email_mail'];
+                echo '<div class="loging">'.$user_id.'でログイン中:';
+                echo '<a href="logout.php">ログアウト</a></div>';
+                
+            }
+            ?>
             <!-- トップテキスト -->
             <div class=top_text>お気に入りの映画β</div>
             <!-- TMDBapiを投げてレスポンスを描写 -->
@@ -206,7 +212,7 @@ else
             <span class="footer-span"><a href="https://www.hamasen.ac.jp/dept/security/">&copy; R2 HAMAJO security&network</a></span>
             <span class="footer-span"><a href="help.php">お問い合わせ</a></span>
             <span class="footer-span"><a href=about.php>このサイトについて </a> </span> </div>
-            <span class="footer-span"><a href="logout.php">ログアウト </a> </span> </div>
+            
     </footer>
 </body>
 

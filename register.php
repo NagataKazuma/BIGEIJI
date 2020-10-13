@@ -97,7 +97,7 @@
             </li>
             <li><a href="#">various▼</a>
                 <ul>
-                <li><a href="favorite.php">お気に入り映画</a></li>
+                    <li><a href="favorite.php">お気に入り映画</a></li>
                     <li><a href="review.php">映画レビュー</a></li>
                 </ul>
             </li>
@@ -109,21 +109,40 @@
             </li>
         </ul>
         <div class="test50">
-
-            <div class=top_logtext>アカウントを作成</div>
+            <?php
+            ini_set('display_errors', 0);
+            session_start();
+            if (isset($_SESSION['login']) == false) {
+                    // print 'ログインしてね。<br />';
+                    // print '<a href="login.php">ログイン画面へ</a>';
+                ;
+            } else {
+                echo '<script language="javascript" type="text/javascript">alert("ログイン中です。ログアウトしてください。");';
+                echo 'setTimeout("redirect()", 10);
+                    function redirect() {
+                    location.href="top.php";
+                    }</script>';
+                exit();
+            }
+            ?>
+            <div class=top_logtext>
+                <div class=log>アカウントを作成</div>
+            </div>
             <!-- 10月6日　ログイン作成（テンプレ） -->
             <br />
             <form method="post" action="login_add_check.php" onsubmit="return passcheck()">
                 <div class="log-set">
-                    <div class="mail icon"></div>メールアドレス
+                    <div class="mail icon"></div>
+                    <div class=log>メールアドレス</div>
                 </div>
                 <input type="email" name="mail" id="mail" style="width:300px" placeholder="E-Mail address" required><br />
                 <div class="log-set">
                     <br />
-                    <div class="key2 icon"></div>パスワード
+                    <div class="key2 icon"></div>
+                    <div class=log>パスワード</div>
                 </div>
                 <div class="toggle">
-                    <input type="password" class="field js-password" id="password" onInput="func1()" name="pass" style="width:300px" placeholder="半角英数字８文字と強度レベル３以上" required>
+                    <input type="password" class="field js-password" id="password" onInput="func1()" name="pass" style="width:300px" placeholder="英数字８字以上と下記強度レベル３以上" required>
                     <label id="label22" class="btn-label js-password-label" for="eye"><i class="fas fa-eye"></i></label>
                     <div class="btn">
                         <input class="btn-input js-password-toggle" id="eye" type="checkbox">
@@ -184,7 +203,8 @@
                 <div class="output-0" id="output_message">強度レベル:0</div>
                 <div class="log-set">
                     <br />
-                    <div class="key icon"></div>もう一度パスワードを入力してください。
+                    <div class="key icon"></div>
+                    <div class=log>もう一度パスワードを入力してください。</div>
                 </div>
                 <input type="password" class="field js-password" id="password2" name="pass2" style="width:300px" placeholder="確認用" required><br />
                 <br />
